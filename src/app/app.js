@@ -1,6 +1,8 @@
 import angular from 'angular';
-
+import uirouter from 'angular-ui-router';
 import '../style/app.css';
+import routing from './app.config.js';
+import collections from '../features/collections';
 
 let app = () => {
     return {
@@ -11,7 +13,8 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [])
-    .directive('app', app);
+angular.module(MODULE_NAME, [uirouter, collections])
+    .directive('app', app)
+    .config(routing);
 
 export default MODULE_NAME;
