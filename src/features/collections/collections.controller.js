@@ -1,15 +1,31 @@
 export default class CollectionsController {
-    constructor($scope, $mdDialog) {
+    constructor($scope, FileUploader) {
         this.name = 'Hello';
         $scope.currentNavItem = 'bottles';
-        $scope.showPrompt = function(event) {
-            var confirm = $mdDialog.prompt()
-                .title('Choose file')
-                .placeholder('File')
-                .targetEvent(event)
-                .ok('Submit')
-                .cancel('Cancel');
-            $mdDialog.show(confirm);
+        $scope.showPrompt = function (event) {
+            $scope.chooseFile = true;
+        };
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: ''
+        });
+
+        // CALLBACKS
+        uploader.onErrorItem = function (fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+            $scope.chooseFile = false;
+        };
+
+        $scope.photos = function(type) {
+            var res = [];
+            if (type == "bottles") {
+                res.push('uploads/bottles/download.jpeg');
+            }
+            return res;
         }
     }
+
+
 }
+
+

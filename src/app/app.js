@@ -20,4 +20,5 @@ angular.module(MODULE_NAME, [uirouter, collections, 'ngMaterial'])
     .directive('app', app)
     .config(routing);
 
+
 export default MODULE_NAME;
