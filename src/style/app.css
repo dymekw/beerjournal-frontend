@@ -2,6 +2,7 @@
 body {
     background: #0147A7;
     color: #fff;
+    height:100vh;
 }
 
 a {
@@ -12,11 +13,17 @@ main {
     padding: 1em;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
     display: block;
 }
 
 footer {
     text-align: center;
     font-size: 0.8em;
+}
+
+.navBardemoBasicUsage md-content .ext-content {
+    padding: 50px;
+    margin: 20px;
+    background-color: #FFF2E0;
 }

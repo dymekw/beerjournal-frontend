@@ -7,6 +7,34 @@
 
 </head>
 <body>
-{{collections.name}}
+<h2 class="title">My Collections</h2>
+<div ng-controller="CollectionsController" ng-cloak>
+    <md-content class="md-padding">
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-click="goto('bottles')" name="bottles">
+                Bottles
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('cans')" name="cans">
+                Cans
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('caps')" name="caps">
+                Caps
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('labels')" name="labels">
+                Labels
+            </md-nav-item>
+        </md-nav-bar>
+        <br/>
+        <br/>
+        <div class="ext-content">
+            Add photo
+            <section layout="row" layout-sm="column" layout-align="left" layout-wrap>
+                <md-button class="md-fab md-primary" aria-label="Add photo" ng-click="showPrompt($event)">+</md-button>
+            </section>
+        </div>
+
+    </md-content>
+</div>
+
 </body>
 </html>
