@@ -4,8 +4,8 @@ An UI part of web-application for beer lovers which is developed as academic pro
 
 ## Requirements
 To run this app locally you need to have installed:
-* `node` (`v4.1.x`+)
-* `npm` (`2.14.x`+)
+* `node` (`v6.2.x`+)
+* `npm` (`4.4.x`+)
 
 ## Getting started
 1. Clone or download this repository 
