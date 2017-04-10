@@ -1,12 +1,12 @@
 /* styles in src/style directory are applied to the whole page */
 body {
-    background: #0147A7;
-    color: #fff;
+    background: #99CCFF;
+    color: #0099FF;
     height:100vh;
 }
 
 a {
-    color: #03A9F4;
+    color: #0066CC;
 }
 
 main {
@@ -25,5 +25,5 @@ footer {
 .navBardemoBasicUsage md-content .ext-content {
     padding: 50px;
     margin: 20px;
-    background-color: #FFF2E0;
+    background-color: #99CCFF;
 }
