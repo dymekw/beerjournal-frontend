@@ -1,11 +1,13 @@
-import angular from 'angular';
-import uirouter from 'angular-ui-router';
-import 'angular-material'
+import angular from "angular";
+import uirouter from "angular-ui-router";
+import "angular-material";
 
-import '../style/app.css';
+import "../style/app.css";
 
-import routing from './app.config.js';
-import collections from '../features/collections';
+import routing from "./app.config.js";
+import collections from "../features/collections";
+import login from "../features/login";
+import home from "../features/home";
 
 let app = () => {
     return {
@@ -16,7 +18,7 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, 'ngMaterial'])
+angular.module(MODULE_NAME, [uirouter, collections, login, home, 'ngMaterial'])
     .directive('app', app)
     .config(routing);
 
