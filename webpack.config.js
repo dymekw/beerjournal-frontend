@@ -86,7 +86,14 @@ module.exports = function makeWebpackConfig() {
 
     config.devServer = {
         contentBase: './src/public',
-        stats: 'minimal'
+        stats: 'minimal',
+        proxy: {
+            '/rest/(.*)': {
+                'pathRewrite': {'^/rest': ''},
+                'target': 'http://beerjournal-server-mock.herokuapp.com/',
+                 changeOrigin: true
+            }
+        }
     };
 
     return config;
