@@ -11,6 +11,7 @@ import login from "../features/login";
 import registration from "../features/registration"
 import home from "../features/home";
 import UserService from "../features/UserService/UserService"
+import AuthService from "../features/authService/AuthService"
 
 let app = () => {
     return {
@@ -23,7 +24,13 @@ const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, 'ngCookies', 'ngMaterial'])
     .factory('UserService', UserService)
+    .factory('AuthService', AuthService)
     .directive('app', app)
+    .config(['$cookiesProvider', function($cookiesProvider) {
+        // Set $cookies defaults
+        $cookiesProvider.defaults.path = '/';
+        $cookiesProvider.defaults.secure = true;
+    }])
     .config(routing)
     .run(run);
 

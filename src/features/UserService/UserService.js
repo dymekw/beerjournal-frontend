@@ -1,9 +1,8 @@
 /**
  * Created by wojciech_dymek on 20.04.17.
  */
-export default function UserService($http) {
+export default function UserService($rootScope, $cookies, $http, $location) {
     var service = {};
-
     service.Create = Create;
 
     return service;
