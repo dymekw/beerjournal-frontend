@@ -6,47 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<h2 class="title">My Collections</h2>
-<div ng-controller="CollectionsController" ng-cloak nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+
+<div ng-controller="CollectionsController">
+    <h2> Logged user: <span>{{username}}</span></h2>
+    {{userOne.id}}
     <md-content class="md-padding">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-click="goto('bottles')" name="bottles">
-                Bottles
+            <md-nav-item md-nav-href="/collections" name="collections">
+                My collections
             </md-nav-item>
-            <md-nav-item md-nav-click="goto('cans')" name="cans">
-                Cans
+            <md-nav-item md-nav-href="/allUsers" name="users">
+                All users
             </md-nav-item>
-            <md-nav-item md-nav-click="goto('caps')" name="caps">
-                Caps
-            </md-nav-item>
-            <md-nav-item md-nav-click="goto('labels')" name="labels">
-                Labels
+            <md-nav-item md-nav-href="/add-item" name="add">
+                Add item to my collection
             </md-nav-item>
         </md-nav-bar>
         <br/>
         <br/>
-        <div class="ext-content">
-            <a href="/add-item" class="btn btn-link">Add item</a>
-            Add photo
-            <section layout="row" layout-sm="column" layout-align="left" layout-wrap>
-                <md-button class="md-fab md-primary" aria-label="Add photo" ng-click="showPrompt()">+</md-button>
-            </section>
-
-            <div ng-show="chooseFile">
-                <input type="file" nv-file-select="" uploader="uploader" />
-
-                <div ng-repeat="item in uploader.queue">
-                    <md-button class="md-raised" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                        Upload
-                    </md-button>
-                </div>
-            </div>
-
-            <div ng-repeat="item in photos(currentNavItem)">
-                <img ng-src="{{item}}" alt="nothing to show"/>
-            </div>
+        <div ng-repeat="item in userItems">
+            <md-card md-theme="default" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{item.name}}</span>
+                        <span class="md-subhead">{{item.category}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-lg card-media"></div>
+                    </md-card-title-media>
+                </md-card-title>
+            </md-card>
         </div>
     </md-content>
+
 </div>
 
 </body>
