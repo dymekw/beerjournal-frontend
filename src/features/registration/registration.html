@@ -26,7 +26,7 @@
 
             <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control" ng-model="registration.user.mail" ng-change="checkEmail()" required />
+                <input type="text" name="email" id="email" class="form-control" ng-model="registration.user.email" ng-change="checkEmail()" required />
                 <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
             </div>
 
