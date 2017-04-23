@@ -11,9 +11,11 @@ import collections from "../features/collections";
 import login from "../features/login";
 import registration from "../features/registration"
 import home from "../features/home";
+import allusers from "../features/allusers"
 import AddNewItemController from "../features/addNewItem"
 import UserService from "../features/UserService/UserService"
 import AuthService from "../features/authService/AuthService"
+
 
 let app = () => {
     return {
@@ -24,7 +26,7 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, AddNewItemController, 'ngCookies', 'ngMaterial','base64'])
+angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, AddNewItemController, 'ngCookies', 'ngMaterial','base64'])
     .factory('UserService', UserService)
     .factory('AuthService', AuthService)
     .directive('app', app)
