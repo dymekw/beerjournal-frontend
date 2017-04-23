@@ -88,15 +88,9 @@ module.exports = function makeWebpackConfig() {
         contentBase: './src/public',
         stats: 'minimal',
         proxy: {
-            '/rest/users/auth': {
-                'pathRewrite': {'^/rest/users/auth': ''},
-                'target': 'http://beerjournal-server-mock.herokuapp.com/users/auth',
+            '/api': {
+                'target': 'http://vps394659.ovh.net:8080/',
                 changeOrigin: true
-            },
-            '/rest/(.*)': {
-                'pathRewrite': {'^/rest': ''},
-                'target': 'http://beerjournal-server-mock.herokuapp.com/',
-                 changeOrigin: true
             }
         }
     };

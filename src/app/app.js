@@ -1,6 +1,7 @@
 import angular from "angular";
 import uirouter from "angular-ui-router";
 import "angular-material";
+import "angular-base64"
 import "angular-cookies"
 
 import "../style/app.css";
@@ -10,6 +11,7 @@ import collections from "../features/collections";
 import login from "../features/login";
 import registration from "../features/registration"
 import home from "../features/home";
+import AddNewItemController from "../features/addNewItem"
 import UserService from "../features/UserService/UserService"
 import AuthService from "../features/authService/AuthService"
 
@@ -22,7 +24,7 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, 'ngCookies', 'ngMaterial'])
+angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, AddNewItemController, 'ngCookies', 'ngMaterial','base64'])
     .factory('UserService', UserService)
     .factory('AuthService', AuthService)
     .directive('app', app)
