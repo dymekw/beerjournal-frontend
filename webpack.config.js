@@ -86,7 +86,13 @@ module.exports = function makeWebpackConfig() {
 
     config.devServer = {
         contentBase: './src/public',
-        stats: 'minimal'
+        stats: 'minimal',
+        proxy: {
+            '/api': {
+                'target': 'http://vps394659.ovh.net:8080/',
+                changeOrigin: true
+            }
+        }
     };
 
     return config;

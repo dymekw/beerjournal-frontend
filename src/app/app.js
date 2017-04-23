@@ -1,6 +1,7 @@
 import angular from "angular";
 import uirouter from "angular-ui-router";
 import "angular-material";
+import "angular-base64"
 
 import "../style/app.css";
 
@@ -8,6 +9,7 @@ import routing from "./app.config.js";
 import collections from "../features/collections";
 import login from "../features/login";
 import home from "../features/home";
+import AddNewItemController from "../features/addNewItem"
 
 let app = () => {
     return {
@@ -18,7 +20,7 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, home, 'ngMaterial'])
+angular.module(MODULE_NAME, [uirouter, collections, login, home, AddNewItemController, 'ngMaterial','base64'])
     .directive('app', app)
     .config(routing);
 
