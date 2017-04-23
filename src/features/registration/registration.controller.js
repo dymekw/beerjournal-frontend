@@ -1,22 +1,19 @@
 /**
  * Created by wojciech_dymek on 19.04.17.
  */
-export default function RegistrationController($scope, $location, UserService) {
+export default function RegistrationController($rootScope, $scope, $http, $location) {
     let registration = this;
     registration.register = register;
-
+    console.log(registration.user);
     function register() {
-        registration.dataLoading = true;
-        UserService.Create(registration.user)
-            .then(function (response) {
-                console.log(response)
-                if (response.success!==undefined && !response.success) {
-                    registration.dataLoading = false;
-                    registration.errorMessage = response.message
-                } else {
+        $http.post('/api/users', registration.user)
+            .then(function(res) {
                     $location.path('/login');
-                }
-            });
+                },
+                function(res) {
+                    console.log('Unable to create new user');
+                    console.log(res);
+                });
     }
 
     $scope.checkPassword = function() {
