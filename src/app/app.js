@@ -38,10 +38,13 @@ angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, A
 
 run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
 function run($rootScope, $location, $cookies, $http) {
-    $rootScope.globals = $cookies.getObject('globals') || {};
-    if ($rootScope.globals.currentUser) {
+    //TODO
+    $rootScope.globals = {};
+    /*$rootScope.globals = $cookies.getObject('user');
+    if ($rootScope.globals) {
+        console.log($rootScope.globals)
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
-    }
+    }*/
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
         var loggedIn = $rootScope.globals.currentUser;

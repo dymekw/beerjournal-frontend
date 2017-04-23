@@ -88,6 +88,11 @@ module.exports = function makeWebpackConfig() {
         contentBase: './src/public',
         stats: 'minimal',
         proxy: {
+            '/api/login': {
+                'pathRewrite': {'^/api': ''},
+                'target': 'http://vps394659.ovh.net:8080/',
+                changeOrigin: true
+            },
             '/api': {
                 'target': 'http://vps394659.ovh.net:8080/',
                 changeOrigin: true

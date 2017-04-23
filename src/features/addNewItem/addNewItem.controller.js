@@ -6,13 +6,13 @@ export default function AddNewItemController($rootScope, $http, $location, $base
     vm.addNewItem = addNewItem;
 
     //TODO fix auth
-    var authdata = $base64.encode('test@gmail.com' + ':' + 'test');
+    /*var authdata = $base64.encode('test@gmail.com' + ':' + 'test');
     $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
     $rootScope.globals = {};
-    $rootScope.globals.userId='58fbd2b5cc2b6604efeb28ed'
+    $rootScope.globals.userId='58fbd2b5cc2b6604efeb28ed'*/
 
     function addNewItem() {
-        vm.item.ownerId = $rootScope.globals.userId;
+        vm.item.ownerId = $rootScope.globals.currentUser.id;
 
         $http.post('/api/users/' + vm.item.ownerId + "/collection/items", vm.item).then(function(res) {
             $location.path("/collections")
