@@ -5,7 +5,6 @@ export default function CollectionsController($rootScope, $scope, $http) {
     $scope.currentNavItem = "collections";
 
     $scope.userItems = [];
-    $scope.userOne = {};
 
     function userItems () {
         $http.get('/api/users/' + user.id + "/collection/items")
