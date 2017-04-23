@@ -3,7 +3,7 @@ export default function AllUsersController($rootScope, $scope, $http) {
     let user = $rootScope.globals.currentUser;
 
     $scope.username = user.username;
-    $scope.currentNavItem = "allUsers";
+    $scope.currentNavItem = "users";
     $scope.users = [];
 
     function getUsersFromServer () {
