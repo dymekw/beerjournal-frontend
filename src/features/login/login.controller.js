@@ -13,7 +13,7 @@ export default function LoginController($rootScope, $http, $location, $sessionSt
 
         $http({method: 'POST', url: '/api/login', transformRequest: transformObj, data: user, headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(function(res) {
             user.id = res.data
-            $sessionStorage.putObject('user', user)
+            $sessionStorage.putObject('user', {username: user.username, id: user.id});
             $rootScope.globals.currentUser = user;
 
             var authdata = $base64.encode(user.username + ':' + user.password);
