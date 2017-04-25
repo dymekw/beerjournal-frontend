@@ -13,10 +13,10 @@ export default function LoginController($rootScope, $http, $location, $sessionSt
 
         $http({method: 'POST', url: '/api/login', transformRequest: transformObj, data: user, headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(function(res) {
             user.id = res.data
-            $sessionStorage.putObject('user', {username: user.username, id: user.id});
+            var authdata = $base64.encode(user.username + ':' + user.password);
+            $sessionStorage.putObject('user', {username: user.username, id: user.id, auth: authdata});
             $rootScope.globals.currentUser = user;
 
-            var authdata = $base64.encode(user.username + ':' + user.password);
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $location.path('/collections');
         }, function(res) {

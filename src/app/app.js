@@ -30,10 +30,10 @@ angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, A
 run.$inject = ['$rootScope', '$location', '$sessionStorage', '$http', '$base64'];
 function run($rootScope, $location, $sessionStorage, $http, $base64) {
     $rootScope.globals = {};
-    $rootScope.globals.currentUser = $sessionStorage.get('user');
+    $rootScope.globals.currentUser = $sessionStorage.getObject('user');
 
     if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($rootScope.globals.currentUser.username + ':' + $rootScope.globals.currentUser.password);
+        $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.auth;
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
