@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div ng-controller="CollectionsController">
+<div ng-controller="AllUsersController">
     <h2> Logged user: <span>{{username}}</span></h2>
     <md-content class="md-padding">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
@@ -23,12 +23,12 @@
         </md-nav-bar>
         <br/>
         <br/>
-        <div ng-repeat="item in userItems">
+        <div ng-repeat="user in users">
             <md-card md-theme="default" md-theme-watch>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{item.name}}</span>
-                        <span class="md-subhead">{{item.category}}</span>
+                        <span class="md-headline">{{user.firstName}}</span>
+                        <span class="md-subhead">{{user.lastName}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-lg card-media"></div>

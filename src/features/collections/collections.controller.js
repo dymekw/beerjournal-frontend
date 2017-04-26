@@ -1,27 +1,19 @@
-export default function CollectionsController($scope, FileUploader) {
-    this.name = 'Hello';
-    $scope.currentNavItem = 'bottles';
-    $scope.showPrompt = function (event) {
-        $scope.chooseFile = true;
-    };
+export default function CollectionsController($rootScope, $scope, $http) {
+    let user = $rootScope.globals.currentUser;
 
-    var uploader = $scope.uploader = new FileUploader({
-        url: ''
-    });
+    $scope.username = user.username;
+    $scope.currentNavItem = "collections";
 
-    // CALLBACKS
-    uploader.onErrorItem = function (fileItem, response, status, headers) {
-        console.info('onErrorItem', fileItem, response, status, headers);
-        $scope.chooseFile = false;
-    };
+    $scope.userItems = [];
 
-    $scope.photos = function (type) {
-        var res = [];
-        if (type == "bottles") {
-            res.push('uploads/bottles/download.jpeg');
-        }
-        return res;
+    function userItems () {
+        $http.get('/api/users/' + user.id + "/collection/items")
+            .then(function (response) {
+                $scope.userItems = response.data;
+            }, function (error) {
+                console.log(error);
+            });
     }
+
+    userItems();
 }
-
-
