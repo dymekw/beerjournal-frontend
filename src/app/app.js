@@ -2,7 +2,7 @@ import angular from "angular";
 import uirouter from "angular-ui-router";
 import "angular-material";
 import "angular-base64"
-import "angular-cookies"
+import "angular-sessionstorage"
 
 import "../style/app.css";
 
@@ -13,8 +13,6 @@ import registration from "../features/registration"
 import home from "../features/home";
 import allusers from "../features/allusers"
 import AddNewItemController from "../features/addNewItem"
-import UserService from "../features/UserService/UserService"
-import AuthService from "../features/authService/AuthService"
 
 
 let app = () => {
@@ -26,32 +24,27 @@ let app = () => {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, AddNewItemController, 'ngCookies', 'ngMaterial','base64'])
-    .factory('UserService', UserService)
-    .factory('AuthService', AuthService)
+angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, AddNewItemController, 'ngSessionStorage', 'ngMaterial','base64'])
     .directive('app', app)
-    .config(['$cookiesProvider', function($cookiesProvider) {
-        // Set $cookies defaults
-        $cookiesProvider.defaults.path = '/';
-        $cookiesProvider.defaults.secure = true;
-    }])
     .config(routing)
     .run(run);
 
-run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
-function run($rootScope, $location, $cookies, $http) {
-    //TODO
+run.$inject = ['$rootScope', '$location', '$sessionStorage', '$http', '$base64'];
+function run($rootScope, $location, $sessionStorage, $http, $base64) {
     $rootScope.globals = {};
-    /*$rootScope.globals = $cookies.getObject('user');
-    if ($rootScope.globals) {
-        console.log($rootScope.globals)
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
-    }*/
+    $rootScope.globals.currentUser = $sessionStorage.getObject('user');
+
+    if ($rootScope.globals.currentUser) {
+        $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.auth;
+    }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var loggedIn = $rootScope.globals.currentUser;
+        var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
         if (!loggedIn && $location.path() !== "/login" && $location.path() !== "/registration") {
             $location.path('/home');
+        }
+        if (loggedIn && $location.path() == "/login") {
+            $location.path('/collections');
         }
     });
 }
