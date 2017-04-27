@@ -6,6 +6,7 @@ import "angular-sessionstorage"
 import "angular-route"
 
 import "../style/app.css";
+import "../style/itemDetails.css"
 
 import routing from "./app.config.js";
 import collections from "../features/collections";

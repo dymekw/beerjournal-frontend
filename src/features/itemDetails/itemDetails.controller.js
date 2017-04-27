@@ -7,6 +7,9 @@ export default function itemDetailsController($rootScope, $scope, $http, $routeP
 
     $http.get('/api/items/' + itemID).then(function(res) {
         $scope.item = res.data;
+        //TODO
+        var country = 'DE';
+        $scope.item.countryImage = 'http://www.geognos.com/api/en/countries/flag/' + country + '.png';
 
         $scope.item.isOwner = $scope.item.ownerId == user.id;
         if (!$scope.item.isOwner) {
@@ -14,5 +17,5 @@ export default function itemDetailsController($rootScope, $scope, $http, $routeP
                 $scope.item.owner = res.data.firstName + ' ' + res.data.lastName;
             });
         }
-    })
+    });
 }
