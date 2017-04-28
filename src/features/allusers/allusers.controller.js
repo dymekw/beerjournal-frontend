@@ -1,4 +1,4 @@
-export default function AllUsersController($rootScope, $scope, $http,Lightbox) {
+export default function AllUsersController($rootScope, $scope, $http,$uibModal,Lightbox) {
  
     let user = $rootScope.globals.currentUser;
 
@@ -45,6 +45,17 @@ export default function AllUsersController($rootScope, $scope, $http,Lightbox) {
 
     $scope.openLightboxModal = function (index) {
         Lightbox.openModal($scope.images, index);
+    };
+
+
+    var modalInstance;
+
+    $scope.open = function () {
+        modalInstance = $uibModal.open({
+            templateUrl: './addNewItem/addNewItem.html',
+            scope: $scope,
+            windowClass: 'small'
+        });
     };
 
 }
