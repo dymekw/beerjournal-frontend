@@ -58,7 +58,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
         var preview = document.querySelector('img');
         var file    = document.querySelector('input[type=file]').files[0];
         var reader  = new FileReader();
-        document.getElementById("fname").value  //file url
+        document.getElementById("fname").value ; //string file url
         reader.addEventListener("load", function () {
             preview.src = reader.result;
         }, false);
