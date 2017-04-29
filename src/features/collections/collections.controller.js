@@ -1,4 +1,4 @@
-export default function CollectionsController($rootScope, $scope, $http, $location) {
+export default function CollectionsController($rootScope, $scope, $http, $location, $uibModal) {
     let user = $rootScope.globals.currentUser;
 
     $scope.username = user.username;
@@ -16,7 +16,14 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
     }
 
     $scope.showDetails = function (itemId) {
-        $location.path("/itemDetails/" + itemId);
+        $scope.itemId = itemId;
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modals/itemDetails.html',
+            scope: $scope
+        }).result.finally(
+            function() {
+            }
+        ).then(angular.noop, angular.noop);
     }
 
     userItems();

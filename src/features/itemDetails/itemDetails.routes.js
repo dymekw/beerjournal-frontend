@@ -1,13 +1,8 @@
-routes.$inject = ['$stateProvider', '$routeProvider'];
+routes.$inject = ['$stateProvider'];
 
-export default function routes($stateProvider, $routeProvider) {
+export default function routes($stateProvider) {
     $stateProvider
         .state('itemDetails', {
-            url: '/itemDetails/:itemID',
-            template: require('./itemDetails.html'),
             controller: 'itemDetailsController'
         });
-    $routeProvider.when('/itemDetails/:itemID', {
-        controller: 'itemDetailsController'
-    });
 }

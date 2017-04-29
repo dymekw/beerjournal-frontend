@@ -1,5 +1,5 @@
-export default function itemDetailsController($rootScope, $scope, $http, $routeParams) {
-    var itemID = $routeParams.itemID;
+export default function itemDetailsController($rootScope, $scope, $http) {
+    var itemID = $scope.itemId;
     let user = $rootScope.globals.currentUser;
     $scope.item = {};
     $scope.item.isOwner = true;
@@ -18,4 +18,8 @@ export default function itemDetailsController($rootScope, $scope, $http, $routeP
             });
         }
     });
+    
+    $scope.close = function () {
+        $scope.$dismiss('cancel');
+    }
 }
