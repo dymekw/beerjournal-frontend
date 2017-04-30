@@ -33,7 +33,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="images">
-                            <ul class="gallery gallery1" ng-controller="AllUsersController">
+                            <ul class="gallery gallery1">
                                 <li ng-repeat="image in images  | filter: { shouldShow: 'true' }"> <!-- TODO change images to user.images -->
                                     <a ng-click="openLightboxModal($index)">
                                         <img ng-src="{{image.url}}" height="50" width="50">
