@@ -6,6 +6,8 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
     $scope.currentNavItem = "users";
     $scope.users = [];
 
+    $scope.showItems = false;
+
     $scope.images = [
         {
             'url': 'https://farm6.staticflickr.com/5830/20552523531_e1efec8d49_k.jpg',
@@ -47,17 +49,15 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
         Lightbox.openModal($scope.images, index);
     };
 
+    $scope.showUserItems = function (user) {
+        $scope.selectedUser = user;
+        $scope.selectedUser.username = user.firstName + ' ' + user.lastName;
+        $scope.showItems = true;
+    }
 
-    var modalInstance;
-
-    $scope.open = function () {
-        modalInstance = $uibModal.open({
-            templateUrl: './addNewItem/addNewItem.html',
-            scope: $scope,
-            windowClass: 'small'
-        });
-    };
-
+    $scope.back = function () {
+        $scope.showItems = false;
+    }
 }
 
 

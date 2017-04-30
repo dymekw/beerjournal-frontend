@@ -2,10 +2,6 @@
     <div ng-controller="itemDetailsController" style="margin-top: 1%; margin-bottom: 1%">
         <h1>{{item.name}}</h1>
 
-        <div ng-show="item.isOwner">
-            <h2>{{item.owner}}</h2>
-        </div>
-
         <div class="country">
             <img ng-src="{{item.countryImage}}" height="30" width="60">
             <p>{{item.country}}</p>

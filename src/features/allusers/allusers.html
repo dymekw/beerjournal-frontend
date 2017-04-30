@@ -24,10 +24,8 @@
         <br/>
         <br/>
 
-        <input class="btn btn-primary"  ng-click="open()" value="Add item to my collection" />
-
-        <div ng-repeat="user in users">
-            <md-card md-theme="default" md-theme-watch>
+        <div ng-if="!showItems" ng-repeat="user in users">
+            <md-card md-theme="default" md-theme-watch ng-click="showUserItems(user)">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{user.firstName}}</span>
@@ -47,9 +45,14 @@
                 </md-card-title>
             </md-card>
         </div>
+        <div ng-if="showItems" ng-controller="CollectionsController">
+            <h3>{{selectedUser.username}} collection</h3>
+            <button class="btn btn-default" ng-click="back()">Back</button>
+            <div ng-include="'/commonViews/collection.html'"/>
+        </div>
     </md-content>
-
 </div>
+
 
 </body>
 </html>

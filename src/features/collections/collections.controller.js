@@ -1,9 +1,12 @@
 export default function CollectionsController($rootScope, $scope, $http, $location, $uibModal) {
-    let user = $rootScope.globals.currentUser;
+    let user = undefined;
+    if (!$scope.selectedUser) {
+        $scope.selectedUser = $rootScope.globals.currentUser;
+        $scope.currentNavItem = "collections";
+    }
+    user = $scope.selectedUser;
 
     $scope.username = user.username;
-    $scope.currentNavItem = "collections";
-
     $scope.userItems = [];
 
     function userItems () {
