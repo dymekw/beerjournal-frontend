@@ -5,12 +5,6 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
     let vm = this;
     vm.addNewItem = addNewItem;
 
-    //TODO fix auth
-    /*var authdata = $base64.encode('test@gmail.com' + ':' + 'test');
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-    $rootScope.globals = {};
-    $rootScope.globals.userId='58fbd2b5cc2b6604efeb28ed'*/
-
     function addNewItem() {
         vm.item.ownerId = $rootScope.globals.currentUser.id;
 
