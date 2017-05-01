@@ -2,9 +2,14 @@ import angular from "angular";
 import uirouter from "angular-ui-router";
 import "angular-material";
 import "angular-base64"
+import "angular-bootstrap-lightbox"
+import "angular-ui-bootstrap"
 import "angular-sessionstorage"
+import "angular-route"
 
 import "../style/app.css";
+import "../style/galeryListStyle.css";
+import "../style/itemDetails.css"
 import "../style/common.css";
 import "../style/navbar.css";
 
@@ -17,10 +22,11 @@ import allusers from "../features/allusers"
 import navbar from "../features/navbar"
 import authService from "../features/authService"
 import AddNewItemController from "../features/addNewItem"
+import itemDetailsController from "../features/itemDetails"
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, navbar, authService, AddNewItemController, 'ngSessionStorage', 'ngMaterial','base64'])
+angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, navbar, authService, itemDetailsController, AddNewItemController, 'ngSessionStorage', 'ngMaterial','base64', 'ngRoute','ui.bootstrap','bootstrapLightbox'])
     .config(routing)
     .run(run);
 
