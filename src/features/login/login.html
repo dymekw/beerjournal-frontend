@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron" ng-controler="LoginController">
         <h2>Login</h2>
         <form name="form" ng-submit="vm.login()" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
@@ -21,6 +21,7 @@
                 <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
             </div>
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Sign in</button>
+            <button type="button"  class="btn btn-primary" ng-click="loginFb()">Login with Facebook <i class="fa fa-facebook-official" aria-hidden="true"></i> </button>
             <a href="/home" class="btn btn-link">Cancel</a>
         </form>
     </div>
