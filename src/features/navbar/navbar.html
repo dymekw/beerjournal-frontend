@@ -1,0 +1,54 @@
+<md-toolbar class="md-hue-2" style="margin-bottom:30px">
+    <div class="md-toolbar-tools">
+
+        <span class="beer-journal-icon"></span>
+        <span class="spacer-15"></span>
+        <a ui-sref="home"><h2 md-truncate>BeerJournal</h2></a>
+
+        <span class="vertical-line"></span>
+
+        <md-button aria-label="Collections"
+                   ui-sref="collections"
+                   class="md-raised md-small md-primary"
+                   ng-show="vm.isLoggedIn()">
+            Collections
+        </md-button>
+
+        <span flex></span>
+
+        <md-button md-no-ink
+                   class="md-small"
+                   aria-label="Register"
+                   ui-sref="registration"
+                   ng-show="!vm.isLoggedIn()">
+            Register
+        </md-button>
+        <md-button class="md-raised md-small"
+                   aria-label="Log in"
+                   ui-sref="login"
+                   ng-show="!vm.isLoggedIn()">
+            Log in
+        </md-button>
+
+        <span class="vertical-line"
+              ng-show="vm.isLoggedIn()"></span>
+
+            <span class="md-body-2 spacer-5"
+                  ng-bind="vm.getCurrentUsername()"
+                  ng-show="vm.isLoggedIn()"></span>
+
+        <md-menu md-position-mode="target-right target"
+                 ng-show="vm.isLoggedIn()">
+            <md-button class="md-icon-button" aria-label="Account" ng-click="$mdMenu.open()">
+                <i class="material-icons">account_circle</i>
+            </md-button>
+
+            <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+                <md-button ui-sref="home">View profile</md-button>
+                <md-button ui-sref="home">Account settings</md-button>
+                <md-button ng-click="vm.logout()">Log out</md-button>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+</md-toolbar>
