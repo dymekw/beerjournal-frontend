@@ -1,7 +1,7 @@
 /**
  * Created by wojciech_dymek on 21.04.17.
  */
-export default function LoginController($rootScope, $http, $location, $sessionStorage, $base64,Toast) {
+export default function LoginController($rootScope, $http, $location, $sessionStorage, $base64,toastr) {
     let vm = this;
     vm.login = login;
     vm.logout = logout;
@@ -19,7 +19,7 @@ export default function LoginController($rootScope, $http, $location, $sessionSt
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $location.path('/collections');
         }, function(res) {
-            Toast.showToast('Login failed', 'error', 3000);
+            toastr.error('Login failed ', 'Error');
             console.log(res)
         });
     }
@@ -28,7 +28,6 @@ export default function LoginController($rootScope, $http, $location, $sessionSt
         $sessionStorage.remove('user');
         $http.defaults.headers.common['Authorization'] = '';
         $location.path('/home');
-        Toast.showToast('Logout', 'success', 3000);
     }
 
     function transformObj(obj) {
