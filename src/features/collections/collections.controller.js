@@ -1,9 +1,12 @@
 export default function CollectionsController($rootScope, $scope, $http, $location, $uibModal) {
     let user = undefined;
+    $scope.isUserCollection = false;
+
     if (!$scope.selectedUser) {
         $scope.selectedUser = $rootScope.globals.currentUser;
         $scope.currentNavItem = "collections";
     }
+    $scope.isUserCollection = $scope.selectedUser == $rootScope.globals.currentUser;
     user = $scope.selectedUser;
 
     $scope.username = user.username;
@@ -27,6 +30,16 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
             function() {
             }
         ).then(angular.noop, angular.noop);
+    }
+
+
+    $scope.deleteItem = function (itemID) {
+        $http.delete('/api/users/' + user.id + '/collection/items/' + itemID).then(function() {
+            userItems();
+        }, function(res) {
+            console.log(res);
+            console.log('Unable to remove item: ' + itemID + ' from collection')
+        })
     }
 
     userItems();
