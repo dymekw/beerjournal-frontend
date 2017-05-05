@@ -6,7 +6,7 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
         $scope.selectedUser = $rootScope.globals.currentUser;
         $scope.currentNavItem = "collections";
     }
-    $scope.isUserCollection = $scope.selectedUser == $rootScope.globals.currentUser;
+    $scope.isUserCollection = $scope.selectedUser.id == $rootScope.globals.currentUser.id;
     user = $scope.selectedUser;
 
     $scope.username = user.username;
@@ -34,12 +34,37 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
 
 
     $scope.deleteItem = function (itemID) {
-        $http.delete('/api/users/' + user.id + '/collection/items/' + itemID).then(function() {
-            userItems();
-        }, function(res) {
-            console.log(res);
-            console.log('Unable to remove item: ' + itemID + ' from collection')
+        dialogConfirm("Are you sure?", "Delete item").then(function(res) {
+        },
+        function(res) {
+            $http.delete('/api/users/' + user.id + '/collection/items/' + itemID).then(function() {
+                userItems();
+            }, function(res) {
+                console.log(res);
+                console.log('Unable to remove item: ' + itemID + ' from collection')
+            })
         })
+    }
+
+
+    function dialogConfirm(message, title) {
+        var modal = $uibModal.open({
+            size: 'sm',
+            templateUrl: '/modals/dialogConfirm.html',
+            controller: function ($scope, $uibModalInstance) {
+
+                $scope.modal = $uibModalInstance;
+
+                if (angular.isObject(message)) {
+                    angular.extend($scope, message);
+                } else {
+                    $scope.message = message;
+                    $scope.title = angular.isUndefined(title) ? '' : title;
+                }
+            }
+        });
+
+        return modal.result;
     }
 
     userItems();
