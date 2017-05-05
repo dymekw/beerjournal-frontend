@@ -4,7 +4,7 @@
 export default function RegistrationController($rootScope, $scope, $http, $location) {
     let registration = this;
     registration.register = register;
-    console.log(registration.user);
+
     function register() {
         $http.post('/api/users', registration.user)
             .then(function(res) {

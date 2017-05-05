@@ -1,8 +1,8 @@
 /* styles in src/style directory are applied to the whole page */
-body {
+html, body {
     background: #99CCFF;
     color: #0099FF;
-    height: 100vh;
+    height: 100%;
 }
 
 a {
@@ -13,7 +13,7 @@ main {
     padding: 1em;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
     display: block;
 }
 

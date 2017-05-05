@@ -1,44 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BeerJournal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<md-content class="md-padding">
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="/collections" name="collections">
+            My collections
+        </md-nav-item>
+        <md-nav-item md-nav-href="/allUsers" name="users">
+            All users
+        </md-nav-item>
+        <md-nav-item md-nav-href="/add-item" name="add">
+            Add item to my collection
+        </md-nav-item>
+    </md-nav-bar>
+    <br/>
+    <br/>
+    <div ng-include="'/commonViews/collection.html'"/>
+</md-content>
 
-<div ng-controller="CollectionsController">
-    <h2> Logged user: <span>{{username}}</span></h2>
-    <md-content class="md-padding">
-        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-href="/collections" name="collections">
-                My collections
-            </md-nav-item>
-            <md-nav-item md-nav-href="/allUsers" name="users">
-                All users
-            </md-nav-item>
-            <md-nav-item md-nav-href="/add-item" name="add">
-                Add item to my collection
-            </md-nav-item>
-        </md-nav-bar>
-        <br/>
-        <br/>
-        <div ng-repeat="item in userItems">
-            <md-card md-theme="default" md-theme-watch>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{item.name}}</span>
-                        <span class="md-subhead">{{item.category}}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-lg card-media"></div>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
-        </div>
-    </md-content>
-
-</div>
-
-</body>
-</html>

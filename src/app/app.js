@@ -2,9 +2,16 @@ import angular from "angular";
 import uirouter from "angular-ui-router";
 import "angular-material";
 import "angular-base64"
+import "angular-bootstrap-lightbox"
+import "angular-ui-bootstrap"
 import "angular-sessionstorage"
+import "angular-route"
 
 import "../style/app.css";
+import "../style/galeryListStyle.css";
+import "../style/itemDetails.css"
+import "../style/common.css";
+import "../style/navbar.css";
 
 import routing from "./app.config.js";
 import collections from "../features/collections";
@@ -12,20 +19,14 @@ import login from "../features/login";
 import registration from "../features/registration"
 import home from "../features/home";
 import allusers from "../features/allusers"
+import navbar from "../features/navbar"
+import authService from "../features/authService"
 import AddNewItemController from "../features/addNewItem"
-
-
-let app = () => {
-    return {
-        template: require('./app.html'),
-        controllerAs: 'app'
-    }
-};
+import itemDetailsController from "../features/itemDetails"
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, AddNewItemController, 'ngSessionStorage', 'ngMaterial','base64'])
-    .directive('app', app)
+angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, navbar, authService, itemDetailsController, AddNewItemController, 'ngSessionStorage', 'ngMaterial','base64', 'ngRoute','ui.bootstrap','bootstrapLightbox'])
     .config(routing)
     .run(run);
 
@@ -39,11 +40,11 @@ function run($rootScope, $location, $sessionStorage, $http, $base64) {
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
+        let loggedIn = $rootScope.globals && $rootScope.globals.currentUser;
         if (!loggedIn && $location.path() !== "/login" && $location.path() !== "/registration") {
             $location.path('/home');
         }
-        if (loggedIn && $location.path() == "/login") {
+        if (loggedIn && $location.path() === "/login") {
             $location.path('/collections');
         }
     });
