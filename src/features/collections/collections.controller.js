@@ -18,16 +18,17 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
             });
     }
 
-    $scope.showDetails = function (itemId) {
-        $scope.itemId = itemId;
-        var modalInstance = $uibModal.open({
+    $scope.showDetails = function (item) {
+        $scope.itemId = item.itemId;
+        $scope.ownerId = user.id;
+        let modalInstance = $uibModal.open({
             templateUrl: 'modals/itemDetails.html',
             scope: $scope
         }).result.finally(
             function() {
             }
         ).then(angular.noop, angular.noop);
-    }
+    };
 
     userItems();
 }
