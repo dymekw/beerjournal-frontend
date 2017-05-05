@@ -1,4 +1,4 @@
-export default function ($rootScope, $http, $location, $sessionStorage, $base64) {
+export default function ($rootScope, $http, $location, $sessionStorage, $base64, toastr) {
 
     this.login = function (username, password) {
         let user = {};
@@ -20,8 +20,7 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64)
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $location.path('/collections');
         }, function (res) {
-            console.log('Login failed');
-            console.log(res)
+            toastr.error('Login failed ', 'Error');
         });
     };
 
