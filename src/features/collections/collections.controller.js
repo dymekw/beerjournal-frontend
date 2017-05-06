@@ -37,12 +37,14 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
         dialogConfirm("Are you sure?", "Delete item").then(function(res) {
         },
         function(res) {
-            $http.delete('/api/users/' + user.id + '/collection/items/' + itemID).then(function() {
-                userItems();
-            }, function(res) {
-                console.log(res);
-                console.log('Unable to remove item: ' + itemID + ' from collection')
-            })
+            if (!res) { //delete item when res is undefined
+                $http.delete('/api/users/' + user.id + '/collection/items/' + itemID).then(function () {
+                    userItems();
+                }, function (res) {
+                    console.log(res);
+                    console.log('Unable to remove item: ' + itemID + ' from collection')
+                })
+            }
         })
     }
 
