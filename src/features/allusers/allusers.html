@@ -1,58 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BeerJournal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<md-content class="md-padding">
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="/collections" name="collections">
+            My collections
+        </md-nav-item>
+        <md-nav-item md-nav-href="/allUsers" name="users">
+            All users
+        </md-nav-item>
+        <md-nav-item md-nav-href="/add-item" name="add">
+            Add item to my collection
+        </md-nav-item>
+    </md-nav-bar>
+    <br/>
+    <br/>
+    <div ng-if="!showItems" ng-repeat="user in users">
+        <md-card md-theme="default" md-theme-watch ng-click="showUserItems(user)">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{user.firstName}}</span>
+                    <span class="md-subhead">{{user.lastName}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="images">
+                        <ul class="gallery gallery1" ng-controller="AllUsersController">
+                            <li ng-repeat="image in images  | filter: { shouldShow: 'true' }"> <!-- TODO change images to user.images -->
+                                <a ng-click="openLightboxModal($index)">
+                                    <img ng-src="{{image.url}}" height="50" width="50">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+        </md-card>
+    </div>
+    <div ng-if="showItems" ng-controller="CollectionsController">
+        <h3>{{selectedUser.username}} collection</h3>
+        <button class="btn btn-default" ng-click="back()">Back</button>
+        <div ng-include="'/commonViews/collection.html'"/>
+    </div>
+</md-content>
 
-<div ng-controller="AllUsersController">
-    <h2> Logged user: <span>{{username}}</span></h2>
-    <md-content class="md-padding">
-        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-href="/collections" name="collections">
-                My collections
-            </md-nav-item>
-            <md-nav-item md-nav-href="/allUsers" name="users">
-                All users
-            </md-nav-item>
-            <md-nav-item md-nav-href="/add-item" name="add">
-                Add item to my collection
-            </md-nav-item>
-        </md-nav-bar>
-        <br/>
-        <br/>
-
-        <div ng-if="!showItems" ng-repeat="user in users">
-            <md-card md-theme="default" md-theme-watch ng-click="showUserItems(user)">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{user.firstName}}</span>
-                        <span class="md-subhead">{{user.lastName}}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="images">
-                            <ul class="gallery gallery1">
-                                <li ng-repeat="image in images  | filter: { shouldShow: 'true' }"> <!-- TODO change images to user.images -->
-                                    <a ng-click="openLightboxModal($index)">
-                                        <img ng-src="{{image.url}}" height="50" width="50">
-                                    </a>
-                                </li>
-                            </ul>
-                            </div>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
-        </div>
-        <div ng-if="showItems" ng-controller="CollectionsController">
-            <h3>{{selectedUser.username}} collection</h3>
-            <button class="btn btn-default" ng-click="back()">Back</button>
-            <div ng-include="'/commonViews/collection.html'"/>
-        </div>
-    </md-content>
-</div>
-
-
-</body>
-</html>

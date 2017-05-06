@@ -1,8 +1,8 @@
 /* styles in src/style directory are applied to the whole page */
-body {
+html, body {
     background: #99CCFF;
     color: #0099FF;
-    height: 100vh;
+    height: 100%;
 }
 
 a {
@@ -13,7 +13,7 @@ main {
     padding: 1em;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
     display: block;
 }
 
@@ -26,4 +26,31 @@ footer {
     padding: 50px;
     margin: 20px;
     background-color: #99CCFF;
+}
+
+.toast {
+    left: 116px;
+    right: 0;
+    position: fixed;
+    top: 30px;
+    border: solid 3px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+    z-index: 256000;
+}
+
+.error {
+    background: rgba(255, 28, 28, 0.9);
+    color: white;
+    text-align: center;
+    border-color: #aa1111;
+}
+
+.success {
+    background: rgba(0, 156, 0, 0.9);
+    color: white;
+    text-align: center;
+    border-color: #00690a;
+
 }
