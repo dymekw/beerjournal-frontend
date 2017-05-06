@@ -1,5 +1,5 @@
 <div ng-repeat="item in userItems">
-    <md-card md-theme="default" md-theme-watch ng-click="showDetails(item.itemId)">
+    <md-card md-theme="default" md-theme-watch">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{item.name}}</span>
@@ -9,5 +9,9 @@
                 <div class="md-media-lg card-media"></div>
             </md-card-title-media>
         </md-card-title>
+        <div>
+            <button class="btn btn-primary" ng-click="showDetails(item.itemId)">Details</button>
+            <button class="btn btn-warning" ng-show="isUserCollection" ng-click="deleteItem(item.itemId)">Delete item</button>
+        </div>
     </md-card>
 </div>
