@@ -6,6 +6,8 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
     $scope.currentNavItem = "users";
     $scope.users = [];
 
+
+
     $scope.showItems = false;
 
     $scope.images = [
@@ -38,6 +40,11 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
         $http.get('/api/users/')
             .then(function (response) {
                 $scope.users = response.data;
+                var usersId = [];
+                $scope.users.forEach(function (user) {
+                    usersId.push(user.id);
+                })
+                getUserCollections(usersId);
             }, function (error) {
                 console.log(error);
             });
@@ -58,6 +65,40 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
     $scope.back = function () {
         $scope.showItems = false;
     }
+
+
+    function getUserCollections(usersId) {
+        usersId.forEach(function (id) {
+            $http.get('api/users/'+id+'/collection/items')
+                .then(function (response) {
+                    var i = {};
+                    i.id = id;
+                    i.data = [];
+                    response.data.forEach(function (item) {
+                        $http.get('/api/items/'+item.itemId)
+                            .then(function (res) {
+                              i.data.push(res.data);
+                              console.log(i);
+                            }, function (error) {
+                                console.log(error);
+                            });
+                    })
+                }, function (error) {
+                    console.log(error);
+                });
+
+        })
+        //console.log(items);
+
+
+
+    }
+
+
+
 }
+
+
+
 
 
