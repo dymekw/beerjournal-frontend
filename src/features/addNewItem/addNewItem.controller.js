@@ -16,7 +16,23 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
         $http.post('/api/users/' + vm.item.ownerId + "/collection/items", vm.item).then(function(res) {
             toastr.success('Item successfully added');
-            $location.path("/collections")
+            console.log(vm.item.ownerId);
+            console.log(res.data.id);
+            console.log($scope.imageFile);
+            var itemId = res.data.id;
+
+             $http.post('/api/users/' + vm.item.ownerId + '/collection/items/'+ itemId + '/images', $scope.imageFile).then(function(res) {
+                console.log("upload sucess");
+                            console.log(res);
+
+                $location.path("/collections")
+             }, function(res) {
+                console.log(res);
+                vm.errorMessage = "unable to push photo";
+                $location.path("/collections")
+             });
+
+
         }, function(res) {
             console.log(res);
             toastr.warning('Unable to add new item');
@@ -78,6 +94,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
         if (file) {
             reader.readAsDataURL(file);
+            $scope.imageFile = file;
         }
     }
 
