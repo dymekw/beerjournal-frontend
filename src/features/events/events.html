@@ -1,0 +1,28 @@
+<md-content class="md-padding">
+    <div ng-if="!showItems" ng-repeat="event in events">
+        <md-card md-theme="default" md-theme-watch/>
+        <div>
+            <md-card-title-text>
+                <p class="md-subhead">Action: {{event.action}}</p>
+                <p class="md-subhead">Action Type: {{event.dataType}}</p>
+            </md-card-title-text>
+            <div ng-if="event.dataType=='ITEM'">
+                <md-card-content>
+                    <p class="md-subhead">Name: {{event.data.name}}</p>
+                    <p class="md-subhead">Brewery: {{event.data.brewery}}</p>
+                    <p class="md-subhead">Style: {{event.data.style}}</p>
+                    <p class="md-subhead">Type: {{event.data.type}}</p>
+                    <p class="md-subhead">Country: {{event.data.country}}</p>
+                </md-card-content>
+            </div>
+            <div ng-if="event.dataType=='USER'">
+                <md-card-content>
+                    <p class="md-subhead">First Name: {{event.data.firstName}}</p>
+                    <p class="md-subhead">Last Name: {{event.data.lastName}}</p>
+                </md-card-content>
+            </div>
+            </md-card-title>
+            </md-card>
+        </div>
+</md-content>
+

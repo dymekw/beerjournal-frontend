@@ -9,16 +9,21 @@
     <!--</md-input-container>-->
 <!--</div>-->
 
-<div ng-repeat="item in userItems | filter:textFilter">
-    <md-card md-theme="default" md-theme-watch ng-click="showDetails(item.itemId)">
+<md-card-content ng-repeat="item in userItems | filter:textFilter">
+    <md-card md-theme="default" md-theme-watch>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline" md-highlight-text="textFilter" md-highlight-flags="gi">{{item.name}}</span>
-                <span class="md-subhead" md-highlight-text="textFilter" md-highlight-flags="gi">{{item.category}}</span>
+                <span class="md-headline">{{item.name}}</span>
+                <span class="md-subhead">{{item.category}}</span>
             </md-card-title-text>
             <md-card-title-media>
                 <div class="md-media-lg card-media"></div>
             </md-card-title-media>
         </md-card-title>
+        <md-card-content>
+            <button class="btn btn-primary" ng-click="showDetails(item.itemId)">Details</button>
+            <button class="btn btn-warning" ng-show="isUserCollection" ng-click="deleteItem(item.itemId)">Delete item
+            </button>
+        </md-card-content>
     </md-card>
-</div>
+</md-card-content>
