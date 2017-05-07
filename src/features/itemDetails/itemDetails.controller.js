@@ -37,9 +37,7 @@ export default function itemDetailsController($rootScope, $scope, $http) {
         if(imageIds){
             $scope.item.images = [];
             angular.forEach(imageIds, function(imageId) {
-                $http.get('/api/images/' + imageId).then(function(res) {
-                    $scope.item.images.push(res.data.url);
-                })
+                $scope.item.images.push('/api/files/' + imageId);
             });
         } else {
             $scope.item.images = ['http://www.howderfamily.com/graphics/howder-beer.jpg'];

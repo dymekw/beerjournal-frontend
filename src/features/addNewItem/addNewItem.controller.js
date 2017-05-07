@@ -7,6 +7,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
     function addNewItem() {
         vm.item.ownerId = $rootScope.globals.currentUser.id;
+        vm.item.attributes = [];
 
         $http.post('/api/users/' + vm.item.ownerId + "/collection/items", vm.item).then(function(res) {
             $location.path("/collections")
