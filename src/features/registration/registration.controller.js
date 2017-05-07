@@ -1,17 +1,18 @@
 /**
  * Created by wojciech_dymek on 19.04.17.
  */
-export default function RegistrationController($rootScope, $scope, $http, $location) {
+export default function RegistrationController($rootScope, $scope, $http, $location, toastr) {
     let registration = this;
     registration.register = register;
 
     function register() {
         $http.post('/api/users', registration.user)
             .then(function(res) {
+                    toastr.info('User successfully created ', '');
                     $location.path('/login');
                 },
                 function(res) {
-                    console.log('Unable to create new user');
+                    toastr.error('Unable to create new user ', 'Error');
                     console.log(res);
                 });
     }

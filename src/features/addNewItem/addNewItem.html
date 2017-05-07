@@ -1,48 +1,73 @@
-<div class="jumbotron">
-    <h2>Add new item</h2>
-    <form name="form" ng-submit="vm.addNewItem()" role="form">
+<md-content class="md-padding">
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="/collections" name="collections">
+            My collections
+        </md-nav-item>
+        <md-nav-item md-nav-href="/allUsers" name="users">
+            All users
+        </md-nav-item>
+        <md-nav-item md-nav-href="/add-item" name="add">
+            Add item to my collection
+        </md-nav-item>
+    </md-nav-bar>
+    <br/>
+    <br/>
+    <div class="jumbotron">
+        <h2>Add new item</h2>
+        <form name="form" ng-submit="vm.addNewItem()" role="form">
 
-        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" ng-model="vm.item.name" required />
-            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
-        </div>
+            <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control" ng-model="vm.item.name" required/>
+                <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
+            </div>
 
-        <div class="form-group" ng-class="{ 'has-error': form.brewery.$dirty && form.brewery.$error.required }">
-            <label for="brewery">Brewery</label>
-            <md-autocomplete name="brewery" id="brewery" md-selected-item="brewery" md-search-text="vm.item.brewery" md-items="item in breweryAutocomplete(vm.item.brewery)" md-dropdown-position="bottom" required>
-                <span md-highlight-text="vm.item.brewery">{{item}}</span>
-            </md-autocomplete>
-            <span ng-show="form.brewery.$dirty && form.brewery.$error.required" class="help-block">Brewery is required</span>
-        </div>
+            <div class="form-group" ng-class="{ 'has-error': form.brewery.$dirty && form.brewery.$error.required }">
+                <label for="brewery">Brewery</label>
+                <md-autocomplete name="brewery" id="brewery" md-selected-item="brewery" md-search-text="vm.item.brewery" md-items="item in breweryAutocomplete(vm.item.brewery)" md-dropdown-position="bottom" required>
+                    <span md-highlight-text="vm.item.brewery">{{item}}</span>
+                </md-autocomplete>
+                <span ng-show="form.brewery.$dirty && form.brewery.$error.required" class="help-block">Brewery is required</span>
+            </div>
 
-        <div class="form-group" ng-class="{ 'has-error': form.type.$dirty && form.type.$error.required }">
-            <label for="type">Type</label>
-            <md-autocomplete name="type" id="type" md-selected-item="type" md-search-text="vm.item.type" md-items="item in typeAutocomplete(vm.item.type)" md-dropdown-position="bottom" required>
-                <span md-highlight-text="vm.item.type">{{item}}</span>
-            </md-autocomplete>
-            <span ng-show="form.type.$dirty && form.type.$error.required" class="help-block">Type is required</span>
-        </div>
+            <div class="form-group" ng-class="{ 'has-error': form.type.$dirty && form.type.$error.required }">
+                <label for="type">Type</label>
+                <md-autocomplete name="type" id="type" md-selected-item="type" md-search-text="vm.item.type" md-items="item in typeAutocomplete(vm.item.type)" md-dropdown-position="bottom" required>
+                    <span md-highlight-text="vm.item.type">{{item}}</span>
+                </md-autocomplete>
+                <span ng-show="form.type.$dirty && form.type.$error.required" class="help-block">Type is required</span>
+            </div>
 
-        <div class="form-group" ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
-            <label for="country">Country</label>
-            <br>
-            <select name="country" id="country" ng-model="vm.item.country" ng-options="c for c in vm.countries | orderBy:'toString()'" required></select>
-        </div>
+            <div class="form-group" ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
+                <label for="country">Country</label>
+                <br>
+                <select name="country" id="country" ng-model="vm.item.country" ng-options="c for c in vm.countries | orderBy:'toString()'" required></select>
+            </div>
 
-        <div class="form-group" ng-class="{ 'has-error': form.style.$dirty && form.style.$error.required }">
-            <label for="style">Style</label>
-            <md-autocomplete name="style" id="style" md-selected-item="style" md-search-text="vm.item.style" md-items="item in styleAutocomplete(vm.item.style)" md-dropdown-position="bottom" required>
-                <span md-highlight-text="vm.item.style">{{item}}</span>
-            </md-autocomplete>
-            <span ng-show="form.style.$dirty && form.style.$error.required" class="help-block">Style is required</span>
-        </div>
+            <div class="form-group" ng-class="{ 'has-error': form.style.$dirty && form.style.$error.required }">
+                <label for="style">Style</label>
+                <md-autocomplete name="style" id="style" md-selected-item="style" md-search-text="vm.item.style" md-items="item in styleAutocomplete(vm.item.style)" md-dropdown-position="bottom" required>
+                    <span md-highlight-text="vm.item.style">{{item}}</span>
+                </md-autocomplete>
+                <span ng-show="form.style.$dirty && form.style.$error.required" class="help-block">Style is required</span>
+            </div>
 
+            <div class="form-group">
+                <input class="btn btn-primary" ng-disabled="form.$invalid" type="submit"
+                       value="Add item to my collection"/>
+                <a href="/collections" class="btn btn-link">Cancel</a>
+            </div>
 
-        <input class="btn btn-primary" ng-disabled="form.$invalid" type="submit" value="Add item to my collection" />
-        <a href="/collections" class="btn btn-link">Cancel</a>
-
-        <input type="file" id="fname" name='file' onchange="angular.element(this).scope().previewFile()" accept="image/x-png,image/gif,image/jpeg" />
-        <img ng-src="" height="200" alt="Image preview...">
-    </form>
-</div>
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <label class="btn btn-default btn-file">
+                    <span>Choose file </span><input type="file" id="fname" name='file'
+                                                    onchange="angular.element(this).scope().previewFile()"
+                                                    accept="image/x-png,image/gif,image/jpeg" style="display: none;">
+                </label>
+            </div>
+            <div class="md-padding">
+                <img ng-src="" height="200">
+            </div>
+        </form>
+    </div>
+</md-content>
