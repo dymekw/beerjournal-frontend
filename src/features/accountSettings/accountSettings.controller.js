@@ -1,33 +1,13 @@
-export default function CollectionsController($rootScope, $scope, $http, $location, $uibModal) {
-    let user = undefined;
-    if (!$scope.selectedUser) {
-        $scope.selectedUser = $rootScope.globals.currentUser;
-        $scope.currentNavItem = "collections";
-    }
-    user = $scope.selectedUser;
+export default function AccountSettingsController($scope, $rootScope, $stateParams, $http, $location, $uibModal, $base64) {
+    $scope.userData = {};
+    $scope.errorMsg;
 
-    $scope.username = user.username;
-    $scope.userItems = [];
+    $http.get('/api/users/' +  this.userId).then(function(response) {
+        $scope.userData = response.data;
+    });
 
-    function userItems () {
-        $http.get('/api/users/' + user.id + "/collection/items")
-            .then(function (response) {
-                $scope.userItems = response.data;
-            }, function (error) {
-                console.log(error);
-            });
-    }
+    $scope.update = function () {
+      
+    };
 
-    $scope.showDetails = function (itemId) {
-        $scope.itemId = itemId;
-        var modalInstance = $uibModal.open({
-            templateUrl: 'modals/itemDetails.html',
-            scope: $scope
-        }).result.finally(
-            function() {
-            }
-        ).then(angular.noop, angular.noop);
-    }
-
-    userItems();
 }

@@ -6,7 +6,7 @@ export default function routes($stateProvider) {
             url: '/accountSettings',
             template: require('./accountSettings.html'),
             controller: 'AccountSettingsController',
-            controllerAs: 'accountSettings'
+            controllerAs: 'AccountSettingsController'
         });
 }
 
