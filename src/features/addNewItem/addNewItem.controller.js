@@ -4,9 +4,15 @@
 export default function AddNewItemController($scope,$rootScope, $http, $location, $uibModal, toastr) {
     let vm = this;
     vm.addNewItem = addNewItem;
+    vm.countries = [];
+
+    getCountries().then(function(countries) {
+        vm.countries = countries;
+    });
 
     function addNewItem() {
         vm.item.ownerId = $rootScope.globals.currentUser.id;
+        vm.item.attributes = [];
 
         $http.post('/api/users/' + vm.item.ownerId + "/collection/items", vm.item).then(function(res) {
             toastr.success('Item successfully added');
@@ -15,6 +21,18 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
             console.log(res);
             toastr.warning('Unable to add new item');
         })
+    }
+
+    function getCountries() {
+        return $http
+            .get('/api/categories/country/')
+            .then(function(res) {
+                var result = [];
+                angular.forEach(res.data.values, function(country) {
+                    result.push(country.name);
+                })
+                return result;
+            });
     }
 
 
@@ -76,18 +94,6 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
             .get('/api/categories/type/')
             .then(function(res) {
                 return filterAutocompleteResults(searchText, res.data.values);
-            });
-    }
-
-    $scope.countryAutocomplete = function(searchText) {
-        return $http
-            .get('/api/categories/country/')
-            .then(function(res) {
-                var result = [];
-                angular.forEach(res.data.values, function(country) {
-                    result.push(country.name);
-                })
-                return filterAutocompleteResults(searchText, result);
             });
     }
 
