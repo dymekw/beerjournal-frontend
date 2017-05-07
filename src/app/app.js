@@ -24,10 +24,11 @@ import authService from "../features/authService"
 import AddNewItemController from "../features/addNewItem"
 import itemDetailsController from "../features/itemDetails"
 import EventsController from  "../features/events"
+import EditItemController from "../features/editItem"
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, collections, login, registration, home, allusers, navbar, authService, itemDetailsController, AddNewItemController, EventsController, 'ngSessionStorage', 'ngMaterial','base64', 'ngRoute','ui.bootstrap','bootstrapLightbox'])
+angular.module(MODULE_NAME, [uirouter, EditItemController, collections, login, registration, home, allusers, navbar, authService, itemDetailsController, AddNewItemController, EventsController, 'ngSessionStorage', 'ngMaterial','base64', 'ngRoute','ui.bootstrap','bootstrapLightbox'])
     .config(routing)
     .run(run);
 
