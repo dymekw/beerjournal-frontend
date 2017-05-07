@@ -6,7 +6,7 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
         $scope.selectedUser = $rootScope.globals.currentUser;
         $scope.currentNavItem = "collections";
     }
-    $scope.isUserCollection = $scope.selectedUser.id == $rootScope.globals.currentUser.id;
+    $scope.isUserCollection = $scope.selectedUser.id === $rootScope.globals.currentUser.id;
     user = $scope.selectedUser;
 
     $scope.username = user.username;
@@ -21,18 +21,16 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
             });
     }
 
-    $scope.showDetails = function (item) {
-        $scope.itemId = item.itemId;
-        $scope.ownerId = user.id;
-        let modalInstance = $uibModal.open({
+    $scope.showDetails = function (itemId) {
+        $scope.itemId = itemId;
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/itemDetails.html',
             scope: $scope
         }).result.finally(
             function() {
             }
         ).then(angular.noop, angular.noop);
-    };
-
+    }
 
     $scope.deleteItem = function (itemID) {
         dialogConfirm("Are you sure?", "Delete item").then(function(res) {

@@ -13,7 +13,7 @@ export default function itemDetailsController($rootScope, $scope, $http) {
             } else {
                 $scope.item.countryImage = 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Missing_flag.png';
             }
-        })
+        });
 
         getItemImages(res.data.imageIds);
     });
@@ -21,10 +21,6 @@ export default function itemDetailsController($rootScope, $scope, $http) {
     $scope.close = function () {
         $scope.$dismiss('cancel');
     };
-
-    $scope.checkOwner = function() {
-        return !(user.id === ownerID);
-    }
 
     function getCountryCode(countryName) {
         return $http.get('/api/categories/country').then(function(res) {
