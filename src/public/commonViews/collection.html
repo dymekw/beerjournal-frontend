@@ -2,19 +2,16 @@
     <label>Search: <input ng-model="textFilter"></label>
 </div>
 
-<!--<div layout="row" layout-align="end center" flex>-->
-    <!--<md-input-container class="md-block">-->
-        <!--<label>Search</label>-->
-        <!--<input type="text" ng-model="textFilter" title="search" aria-label="search">-->
-    <!--</md-input-container>-->
-<!--</div>-->
-
 <md-card-content ng-repeat="item in userItems | filter:textFilter">
     <md-card md-theme="default" md-theme-watch>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{item.name}}</span>
-                <span class="md-subhead">{{item.category}}</span>
+                <span class="md-headline"
+                      md-highlight-text="textFilter"
+                      md-highlight-flags="gi">{{item.name}}</span>
+                <span class="md-subhead"
+                      md-highlight-text="textFilter"
+                      md-highlight-flags="gi">{{item.category}}</span>
             </md-card-title-text>
             <md-card-title-media>
                 <div class="md-media-lg card-media"></div>
