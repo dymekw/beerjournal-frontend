@@ -1,7 +1,7 @@
 /**
  * Created by wojciech_dymek on 22.04.17.
  */
-export default function AddNewItemController($scope,$rootScope, $http, $location, $uibModal, toastr) {
+export default function AddNewItemController($scope,$rootScope, $http, $location, $uibModal, toastr, $base64) {
     let vm = this;
     vm.addNewItem = addNewItem;
     vm.countries = [];
@@ -16,28 +16,44 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
         $http.post('/api/users/' + vm.item.ownerId + "/collection/items", vm.item).then(function(res) {
             toastr.success('Item successfully added');
-            console.log(vm.item.ownerId);
-            console.log(res.data.id);
-            console.log($scope.imageFile);
+
             var itemId = res.data.id;
 
-             $http.post('/api/users/' + vm.item.ownerId + '/collection/items/'+ itemId + '/images', $scope.imageFile).then(function(res) {
-                console.log("upload sucess");
-                            console.log(res);
-
-                $location.path("/collections")
-             }, function(res) {
+            if ($scope.imageFile != null) {
+                $scope.form = [];
+                 $http({
+                  method  : 'POST',
+                  url     : '/api/users/' + vm.item.ownerId + '/collection/items/'+ itemId + '/images',
+                  processData: false,
+                  transformRequest: function (data) {
+                      var formData = new FormData();
+                      formData.append("file", $scope.imageFile);  
+                      return formData;  
+                  },  
+                  data : $scope.form,
+                  headers: {
+                         'Content-Type': undefined
+              } 
+           }).then(function(res){
                 console.log(res);
-                vm.errorMessage = "unable to push photo";
+                toastr.success('Image uploaded');
                 $location.path("/collections")
-             });
 
+           }, function (error) {
+                toastr.success('Image upload error');
 
+           });
+       } else {
+        $location.path("/collections")
+       };
         }, function(res) {
             console.log(res);
             toastr.warning('Unable to add new item');
         })
+
     }
+
+
 
     function getCountries() {
         return $http
