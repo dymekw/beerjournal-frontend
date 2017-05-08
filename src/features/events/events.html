@@ -3,23 +3,52 @@
         <md-card md-theme="default" md-theme-watch/>
         <div>
             <md-card-title-text>
-                <p class="md-subhead">Action: {{event.action}}</p>
-                <p class="md-subhead">Action Type: {{event.dataType}}</p>
             </md-card-title-text>
             <div ng-if="event.dataType=='ITEM'">
                 <md-card-content>
-                    <p class="md-subhead">Name: {{event.data.name}}</p>
-                    <p class="md-subhead">Brewery: {{event.data.brewery}}</p>
-                    <p class="md-subhead">Style: {{event.data.style}}</p>
-                    <p class="md-subhead">Type: {{event.data.type}}</p>
-                    <p class="md-subhead">Country: {{event.data.country}}</p>
+                    <div class="row">
+                        <div class="col-md-1" align="left">
+                            <img src="https://s-media-cache-ak0.pinimg.com/236x/ac/dc/3c/acdc3c47e715918173c8e760a2721aea.jpg" height="50" width="50" />
+                        </div>
+                        <div class="col-md-9" align="left">
+                            <div ng-if="event.action=='CREATE'">
+                                    <p class="md-subhead">Item <b>{{event.data.name}}</b> was just created.</p>
+                            </div>
+                            <div ng-if="event.action=='UPDATE'">
+                                    <p class="md-subhead">Item <b>{{event.data.name}}</b> was just updated.</p>
+                            </div>
+                            <div ng-if="event.action=='DELETE'">
+                                    <p class="md-subhead">Item <b>{{event.data.name}}</b> was just deleted.</p>
+                            </div>
+                            <div>
+                                <p> It's a <b>{{event.data.type}}</b>
+                                    from {{event.data.brewery}} brewery. It's style is <b>{{event.data.style}}</b>, type: <b>{{event.data.type}}</b>
+                                    and it's from <b>{{event.data.country}}</b>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2" align="left">
+                            {{event.date}}
+                        </div>
+                    </div>
                 </md-card-content>
             </div>
             <div ng-if="event.dataType=='USER'">
-                <md-card-content>
-                    <p class="md-subhead">First Name: {{event.data.firstName}}</p>
-                    <p class="md-subhead">Last Name: {{event.data.lastName}}</p>
-                </md-card-content>
+                <div ng-if="event.action=='CREATE'">
+                    <md-card-content>
+                        <div class="row">
+                            <div class="col-md-1" align="left">
+                                <img src="https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" height="50" width="50" />
+                            </div>
+                            <div class="col-md-9" align="left">
+                                <p class="md-subhead">User <b>{{event.data.firstName}} {{event.data.lastName}}</b> just joined BeerJournal. Welcome!</p>
+                            </div>
+                            <div class="col-md-2" align="left">
+                                {{event.date}}
+                            </div>
+                        </div>
+                    </md-card-content>
+                </div>
             </div>
             </md-card-title>
             </md-card>
