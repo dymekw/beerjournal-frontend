@@ -53,8 +53,6 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
     }
 
-
-
     function getCountries() {
         return $http
             .get('/api/categories/country/')
@@ -66,7 +64,6 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
                 return result;
             });
     }
-
 
     var modalInstance;
 
