@@ -6,7 +6,7 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
         $scope.selectedUser = $rootScope.globals.currentUser;
         $scope.currentNavItem = "collections";
     }
-    $scope.isUserCollection = $scope.selectedUser.id == $rootScope.globals.currentUser.id;
+    $scope.isUserCollection = $scope.selectedUser.id === $rootScope.globals.currentUser.id;
     user = $scope.selectedUser;
 
     $scope.username = user.username;
@@ -31,7 +31,6 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
             }
         ).then(angular.noop, angular.noop);
     }
-
 
     $scope.deleteItem = function (itemID) {
         dialogConfirm("Are you sure?", "Delete item").then(function(res) {
