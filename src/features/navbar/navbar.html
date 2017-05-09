@@ -13,6 +13,12 @@
                    ng-show="vm.isLoggedIn()">
             Collections
         </md-button>
+        <md-button aria-label="Events"
+                   ui-sref="events"
+                   class="md-raised md-small md-primary"
+                   ng-show="vm.isLoggedIn()">
+            Events
+        </md-button>
 
         <span flex></span>
 
@@ -47,7 +53,7 @@
 
             <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
                 <md-button ui-sref="home">View profile</md-button>
-                <md-button ui-sref="home">Account settings</md-button>
+                <md-button ui-sref="accountSettings">Account settings</md-button>
                 <md-button ng-click="vm.logout()">Log out</md-button>
             </md-menu-content>
         </md-menu>

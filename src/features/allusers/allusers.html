@@ -1,4 +1,4 @@
-<md-content class="md-padding">
+<md-content class="md-padding" ng-controller="AllUsersController">
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
         <md-nav-item md-nav-href="/collections" name="collections">
             My collections
@@ -19,12 +19,12 @@
                     <span class="md-headline">{{user.firstName}}</span>
                     <span class="md-subhead">{{user.lastName}}</span>
                 </md-card-title-text>
-                <md-card-title-media>
+               <md-card-title-media>
                     <div class="images">
-                        <ul class="gallery gallery1" ng-controller="AllUsersController">
-                            <li ng-repeat="image in images  | filter: { shouldShow: 'true' }"> <!-- TODO change images to user.images -->
-                                <a ng-click="openLightboxModal($index)">
-                                    <img ng-src="{{image.url}}" height="50" width="50">
+                        <ul class="gallery gallery1">
+                            <li ng-repeat="image in user.images">
+                                <a ng-click="openLightboxModal($index,user.images)">
+                                    <img ng-src="{{image}}" height="50" width="50">
                                 </a>
                             </li>
                         </ul>
@@ -36,7 +36,7 @@
     <div ng-if="showItems" ng-controller="CollectionsController">
         <h3>{{selectedUser.username}} collection</h3>
         <button class="btn btn-default" ng-click="back()">Back</button>
-        <div ng-include="'/commonViews/collection.html'"/>
+        <div ng-include="'/commonViews/collection.html'"></div>
     </div>
 </md-content>
 

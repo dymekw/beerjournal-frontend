@@ -62,24 +62,6 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
         $facebook.api("/me").then(
             function(response) {
                 console.log(response);
-                var fbUser = response;
-                const authdata = $base64.encode(fbUser.id + ':' + fbUser.name);
-                $sessionStorage.putObject('user', {username: fbUser.name, id: fbUser.id, auth: authdata});
-                $rootScope.globals.currentUser = fbUser;
-                fbUser.email = fbUser.name;
-                fbUser.firstName = fbUser.name;
-                fbUser.lastName = fbUser.name;
-                fbUser.password = fbUser.name;
-                $http.post('/api/users', fbUser)
-                    .then(function(res) {
-                            console.log(res.data);
-                        },
-                        function(res) {
-                            console.log('Unable to create new user');
-                            console.log(res);
-                        });
-
-                $location.path('/collections');
             },
             function(err) {
                 console.log(err);
