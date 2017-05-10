@@ -19,6 +19,12 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
             }, function (error) {
                 console.log(error);
             });
+        $http.get('api/users/'+user.id+'/avatar')
+            .then(function (response) {
+                $scope.avatar = 'api/users/'+user.id+'/avatar';
+            }, function (error) {
+                $scope.avatar = 'https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
+            });
     }
 
     $scope.showDetails = function (itemId) {

@@ -1,7 +1,7 @@
+<img ng-src="{{avatar}}" height="100" width="100">
 <div class="search-bar" layout="row" layout-align="end center" flex>
     <label>Search: <input ng-model="textFilter"></label>
 </div>
-
 <md-card-content ng-repeat="item in userItems | filter:textFilter">
     <md-card md-theme="default" md-theme-watch>
         <md-card-title>

@@ -26,24 +26,6 @@ export default function EditItemController($scope, $rootScope, $stateParams, $ht
         });
     };
 
-    $scope.uploadFiles = function (files, errFiles) {
-        $scope.files = files;
-        $scope.errFiles = errFiles;
-
-        angular.forEach(files, function (file) {
-            var reader = new FileReader();
-            reader.onload =
-                (function (theFile) {
-                    return function (e) {
-                        $scope.$apply(function () {
-                            reader.result;
-                        });
-                    };
-                })(file);
-        });
-        modalInstance.close();
-    };
-
 
     $scope.previewFile = function() {
         var preview = document.querySelector('img');

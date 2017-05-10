@@ -52,12 +52,6 @@
                 <span ng-show="form.style.$dirty && form.style.$error.required" class="help-block">Style is required</span>
             </div>
 
-            <div class="form-group">
-                <input class="btn btn-primary" ng-disabled="form.$invalid" type="submit"
-                       value="Add item to my collection"/>
-                <a href="/collections" class="btn btn-link">Cancel</a>
-            </div>
-
             <div class="fileinput fileinput-new" data-provides="fileinput">
                 <label class="btn btn-default btn-file">
                     <span>Choose file </span><input type="file" id="fname" name='file'
@@ -65,8 +59,14 @@
                                                     accept="image/x-png,image/gif,image/jpeg" style="display: none;">
                 </label>
             </div>
-            <div class="md-padding">
-                <img ng-src="" height="200">
+           <!-- <div class="md-padding">
+                <img ng-src="" height="50">
+            </div>-->
+
+            <div class="form-group">
+                <input class="btn btn-primary" ng-disabled="form.$invalid" type="submit"
+                       value="Add item to my collection"/>
+                <a href="/collections" class="btn btn-link">Cancel</a>
             </div>
         </form>
     </div>
