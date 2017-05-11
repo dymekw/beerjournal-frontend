@@ -51,6 +51,16 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
     }
 
+    $scope.removeImage = function() {
+        vm.imageFile = undefined;
+        $scope.files = undefined;
+        $scope.errFiles = undefined;
+        $scope.imageFileAdded = false;
+
+        var preview = document.querySelector('img');
+        preview.src = '';
+    }
+
     var modalInstance;
 
     $scope.open = function () {
@@ -94,6 +104,9 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
         if (file) {
             reader.readAsDataURL(file);
             vm.imageFile = file;
+            $scope.$apply(function () {
+                $scope.imageFileAdded = true;
+            });
         }
     }
 

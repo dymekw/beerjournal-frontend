@@ -1,4 +1,4 @@
-export default function itemDetailsController($rootScope, $scope, $http, countriesProvider) {
+export default function itemDetailsController($rootScope, $scope, $http, countriesProvider, Lightbox) {
     var itemID = $scope.itemId;
     var ownerID = $scope.ownerId;
     let user = $rootScope.globals.currentUser;
@@ -15,6 +15,11 @@ export default function itemDetailsController($rootScope, $scope, $http, countri
     
     $scope.close = function () {
         $scope.$dismiss('cancel');
+    };
+
+
+    $scope.openLightboxModal = function (index,images) {
+        Lightbox.openModal(images, index);
     };
 
     function getItemImages(imageIds) {

@@ -11,8 +11,14 @@
         <h3>Type: {{item.type}}</h3>
         <h3>Style: {{item.style}}</h3>
 
-        <div ng-repeat="image in item.images">
-            <img ng-src="{{image}}"/>
+        <div class="images">
+            <ul class="gallery gallery1">
+                <li ng-repeat="image in item.images">
+                    <a ng-click="openLightboxModal($index,item.images)">
+                        <img ng-src="{{image}}" height="100" width="100">
+                    </a>
+                </li>
+            </ul>
         </div>
 
         <button class="btn btn-primary" ng-click="close()">Close</button>
