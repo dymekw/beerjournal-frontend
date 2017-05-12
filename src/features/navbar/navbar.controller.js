@@ -1,4 +1,4 @@
-export default function NavbarController(authService) {
+export default function NavbarController($scope, $rootScope, authService) {
     let vm = this;
     vm.logout = function () {
         authService.logout();
@@ -10,6 +10,12 @@ export default function NavbarController(authService) {
 
     vm.getCurrentUsername = function() {
         return authService.getCurrentUserName();
+    }
+
+    $scope.turnOffCamera = function() {
+        $rootScope.localstream.getTracks()[0].stop();
+        $rootScope.localstream = undefined;
+        $rootScope.cameraTurnedOn = false;
     }
 }
 
