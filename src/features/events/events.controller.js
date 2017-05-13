@@ -1,4 +1,4 @@
-export default function EventsController($rootScope, $scope, $http, $location, $uibModal) {
+export default function EventsController($rootScope, $scope, $http, $location, $uibModal,moment) {
     let user = undefined;
     if (!$scope.selectedUser) {
         $scope.selectedUser = $rootScope.globals.currentUser;
@@ -7,12 +7,17 @@ export default function EventsController($rootScope, $scope, $http, $location, $
     user = $scope.selectedUser;
 
     $scope.username = user.username;
-    $scope.events = [];
+
 
     function events () {
         $http.get("/api/events")
             .then(function (response) {
-                $scope.events = response.data;
+                var events = response.data;
+                $scope.events = [];
+                events.forEach(function (event) {
+                    event.date = moment(event.date).fromNow();
+                    $scope.events.push(event);
+                })
                 console.log("Hi events", $scope);
             }, function (error) {
                 console.log(error);

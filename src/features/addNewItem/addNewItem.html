@@ -38,12 +38,6 @@
                 <span ng-show="form.type.$dirty && form.type.$error.required" class="help-block">Type is required</span>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
-                <label for="country">Country</label>
-                <br>
-                <select name="country" id="country" ng-model="vm.item.country" ng-options="c for c in vm.countries | orderBy:'toString()'" required></select>
-            </div>
-
             <div class="form-group" ng-class="{ 'has-error': form.style.$dirty && form.style.$error.required }">
                 <label for="style">Style</label>
                 <md-autocomplete name="style" id="style" md-selected-item="style" md-search-text="vm.item.style" md-items="item in styleAutocomplete(vm.item.style)" md-dropdown-position="bottom" required>
@@ -52,16 +46,23 @@
                 <span ng-show="form.style.$dirty && form.style.$error.required" class="help-block">Style is required</span>
             </div>
 
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <label class="btn btn-default btn-file">
-                    <span>Choose file </span><input type="file" id="fname" name='file'
-                                                    onchange="angular.element(this).scope().previewFile()"
-                                                    accept="image/x-png,image/gif,image/jpeg" style="display: none;">
-                </label>
+            <div class="form-group" ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
+                <label>Country</label>
+                <md-select placeholder="Country" name="country" id="country" ng-model="vm.item.country" required>
+                    <md-option ng-value="c" ng-repeat="c in vm.countries">{{c}}</md-option>
+                </md-select>
             </div>
-           <!-- <div class="md-padding">
-                <img ng-src="" height="50">
-            </div>-->
+
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <label class="btn btn-default btn-file">
+                        <span ng-disabled="!imageFileAdded">Add image</span>
+                        <input type="file" id="fname" name='file' onclick="this.value=null"
+                               onchange="angular.element(this).scope().previewFile()"
+                               accept="image/x-png,image/gif,image/jpeg" style="display: none;">
+                    </label>
+                </div>
+            </div>
 
             <div class="form-group">
                 <input class="btn btn-primary" ng-disabled="form.$invalid" type="submit"
@@ -69,5 +70,9 @@
                 <a href="/collections" class="btn btn-link">Cancel</a>
             </div>
         </form>
+        <div class="md-padding" ng-show="imageFileAdded">
+            <img id="addedImage" ng-src="" height="200">
+            <button class="btn btn-warning" ng-click="removeImage()">Delete</button>
+        </div>
     </div>
 </md-content>
