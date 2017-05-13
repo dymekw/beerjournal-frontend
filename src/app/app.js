@@ -12,8 +12,10 @@ import "../style/galeryListStyle.css";
 import "../style/itemDetails.css"
 import "../style/common.css";
 import "../style/navbar.css";
+import "../style/beer.theme.css";
 
 import routing from "./app.config.js";
+import themeConfig from "./beer.theme"
 import collections from "../features/collections";
 import login from "../features/login";
 import registration from "../features/registration"
@@ -31,6 +33,7 @@ const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [uirouter, EditItemController, collections, login, registration, home, allusers, navbar, authService, itemDetailsController, AddNewItemController, EventsController, accountSettings, 'ngSessionStorage', 'ngMaterial','base64', 'ngRoute','ui.bootstrap','bootstrapLightbox'])
     .config(routing)
+    .config(themeConfig)
     .run(run);
 
 run.$inject = ['$rootScope', '$location', '$sessionStorage', '$http', '$base64'];

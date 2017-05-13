@@ -1,0 +1,68 @@
+html, body {
+    background: rgb(255,244,244);
+    background: -moz-linear-gradient(top, rgba(255,244,244,1) 4%, rgba(244,234,222,1) 10%, rgba(241,196,15,1) 52%, rgba(237,152,0,1) 85%);
+    background: -webkit-linear-gradient(top, rgba(255,244,244,1) 4%,rgba(244,234,222,1) 10%,rgba(241,196,15,1) 52%,rgba(237,152,0,1) 85%);
+    background: linear-gradient(to bottom, rgba(255,244,244,1) 4%,rgba(244,234,222,1) 10%,rgba(241,196,15,1) 52%, rgb(237, 152, 0) 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff4f4', endColorstr='#ed9800',GradientType=0 );
+
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+
+    color: #595959;
+    height: 100%;
+}
+
+a {
+    color: #333;
+}
+
+md-card {
+    background-color:white;
+}
+
+.jumbotron {
+    background-color: rgb(250, 250, 250);
+}
+
+md-content {
+    border-radius: 6px;
+}
+
+.jumbotron, md-content {
+    /*box-shadow: 0 0 20px rgba(237, 152, 0, 0.13);*/
+    /*box-shadow: 0 0 20px rgba(255, 255, 255, 0.13);*/
+    /*border: 1px solid white;*/
+    box-shadow: 0 0 50px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.btn-primary {
+    background-color: rgba(51, 51, 51, 0.80);
+    color: #fff;
+    border: 1px solid rgba(51, 51, 51, 0.90);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background-color: rgba(51, 51, 51, 0.9);
+    border: 1px solid rgba(51, 51, 51, 1.0);
+}
+
+.btn-primary:active, .btn-primary.active,
+.btn-primary[disabled], .btn-primary.disabled {
+    background-color: #333;
+    border: 1px solid #222;
+}
+
+.btn-link {
+    color: #333;
+}
+
+.btn-link:hover, .btn-link:visited {
+    color: rgba(51, 51, 51, 0.75);
+}
+
+md-content .jumbotron {
+    box-shadow: none;
+    border:none;
+}
+
