@@ -18,7 +18,7 @@ export default function NavbarController($rootScope,$scope,$http,authService) {
                 .then(function (response) {
                     $scope.avatar = 'api/users/'+$rootScope.globals.currentUser.id+'/avatar';
                 }, function (error) {
-                    $scope.avatar = 'https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
+                    $scope.avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxeed1zuKopBf5p58ffZNLCz2DMwbmA_xj9fD2W-EzZ4xcsVN6oFhAAw';
                 });
         }
     }
