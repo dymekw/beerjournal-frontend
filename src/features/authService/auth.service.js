@@ -1,6 +1,6 @@
 export default function ($rootScope, $http, $location, $sessionStorage, $base64, toastr,$facebook) {
 
-    this.login = function (username, password) {
+    var login = function (username, password) {
         let user = {};
         user.username = username;
         user.password = password;
@@ -59,13 +59,29 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
 
     }
     function getFacebookUser() {
-        $facebook.api("/me").then(
+        $facebook.api("/me",{fields: 'id,name,email,last_name,first_name,picture' }).then(
             function(response) {
                 console.log(response);
+                var fbUser = {
+                    "avatarFileId": "string",
+                    "email": response.email,
+                    "firstName": response.first_name,
+                    "id": response.id,
+                    "lastName": response.last_name,
+                    "password": "string"
+                };
+                $http.post('/api/users', fbUser)
+                    .then(function(res) {
+                        login(fbUser.email,fbUser.password);
+                    },function(res) {
+                        login(fbUser.email,fbUser.password);
+                    });
+
             },
             function(err) {
-                console.log(err);
             });
     }
+
+
 
 }
