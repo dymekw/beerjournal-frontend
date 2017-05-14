@@ -1,12 +1,12 @@
 /**
  * Created by wojciech_dymek on 22.04.17.
  */
-export default function AddNewItemController($scope,$rootScope, $http, $location, $uibModal, toastr, $base64) {
+export default function AddNewItemController($scope,$rootScope, $http, $location, $uibModal, toastr, countriesProvider) {
     let vm = this;
     vm.addNewItem = addNewItem;
     vm.countries = [];
 
-    getCountries().then(function(countries) {
+    countriesProvider.getCountries().then(function(countries) {
         vm.countries = countries;
     });
 
@@ -19,7 +19,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
             var itemId = res.data.id;
 
-            if ($scope.imageFile != null) {
+            if (vm.imageFile != null) {
                 $scope.form = [];
                  $http({
                   method  : 'POST',
@@ -27,7 +27,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
                   processData: false,
                   transformRequest: function (data) {
                       var formData = new FormData();
-                      formData.append("file", $scope.imageFile);  
+                      formData.append("file", vm.imageFile);
                       return formData;  
                   },  
                   data : $scope.form,
@@ -35,13 +35,11 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
                          'Content-Type': undefined
               } 
            }).then(function(res){
-                console.log(res);
                 toastr.success('Image uploaded');
                 $location.path("/collections")
 
            }, function (error) {
                 toastr.success('Image upload error');
-
            });
        } else {
         $location.path("/collections")
@@ -53,16 +51,14 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
     }
 
-    function getCountries() {
-        return $http
-            .get('/api/categories/country/')
-            .then(function(res) {
-                var result = [];
-                angular.forEach(res.data.values, function(country) {
-                    result.push(country.name);
-                })
-                return result;
-            });
+    $scope.removeImage = function() {
+        vm.imageFile = undefined;
+        $scope.files = undefined;
+        $scope.errFiles = undefined;
+        $scope.imageFileAdded = false;
+
+        var preview = document.querySelector('img');
+        preview.src = '';
     }
 
     var modalInstance;
@@ -107,7 +103,10 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
         if (file) {
             reader.readAsDataURL(file);
-            $scope.imageFile = file;
+            vm.imageFile = file;
+            $scope.$apply(function () {
+                $scope.imageFileAdded = true;
+            });
         }
     }
 
