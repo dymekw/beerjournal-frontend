@@ -1,6 +1,7 @@
 export default function ($rootScope, $http, $location, $sessionStorage, $base64, toastr,$facebook) {
+    let authService = this;
 
-    var login = function (username, password) {
+    this.login = function (username, password) {
         let user = {};
         user.username = username;
         user.password = password;
@@ -71,7 +72,7 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
                     "password": "string"
                 };
 
-                login(fbUser.email,fbUser.password);
+                authService.login(fbUser.email,fbUser.password);
 
             },
             function(err) {
