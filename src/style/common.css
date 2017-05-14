@@ -34,3 +34,17 @@
     padding: 0;
     border-radius: 0;
 }
+
+td {
+    padding: 10px 5px 3px 5px;
+    font-size:150%;
+    font-family: Serif
+}
+
+td:nth-of-type(even) {
+    font-weight: bold;
+}
+
+tr:nth-of-type(even) {
+    background-color: white;
+}

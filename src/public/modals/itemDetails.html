@@ -2,6 +2,10 @@
     <div ng-controller="itemDetailsController" style="margin-top: 1%; margin-bottom: 1%">
         <h1>{{item.name}}</h1>
 
+        <div ng-show="item.owner">
+            <md-button class="md-primary" ng-click="showUserCollection(item.owner)">Owner: <b>{{item.owner.firstName + ' ' + item.owner.lastName}}</b></md-button>
+        </div>
+
         <div class="country">
             <img ng-src="{{item.countryImage}}" height="30" width="60"  ng-style="{border: '1px solid grey'}" >
             <p>{{item.country}}</p>

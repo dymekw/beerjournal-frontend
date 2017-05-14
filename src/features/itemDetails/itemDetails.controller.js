@@ -1,4 +1,4 @@
-export default function itemDetailsController($rootScope, $scope, $http, countriesProvider, Lightbox) {
+export default function itemDetailsController($rootScope, $scope, $http, $location, countriesProvider, Lightbox) {
     var itemID = $scope.itemId;
     var ownerID = $scope.ownerId;
     let user = $rootScope.globals.currentUser;
@@ -11,6 +11,12 @@ export default function itemDetailsController($rootScope, $scope, $http, countri
                                 $scope.item.countryImage =  flag;
                             });
         getItemImages(res.data.imageIds);
+
+        if (res.data.ownerId != user.id) {
+            $http.get('/api/users/' + res.data.ownerId).then(function(owner) {
+                $scope.item.owner = owner.data;
+            })
+        }
     });
     
     $scope.close = function () {
@@ -21,6 +27,11 @@ export default function itemDetailsController($rootScope, $scope, $http, countri
     $scope.openLightboxModal = function (index,images) {
         Lightbox.openModal(images, index);
     };
+
+    $scope.showUserCollection = function(user) {
+        $rootScope.selectedUser = user;
+        $location.path('/allUsers');
+    }
 
     function getItemImages(imageIds) {
         if(imageIds){
