@@ -4,11 +4,11 @@
         <div>
             <md-card-title-text>
             </md-card-title-text>
-            <div ng-if="event.dataType=='ITEM'">
+            <div ng-if="event.dataType=='ITEM'" ng-click="itemEvent(event.data)">
                 <md-card-content>
                     <div class="row">
                         <div class="col-md-1" align="left">
-                            <img src="https://s-media-cache-ak0.pinimg.com/236x/ac/dc/3c/acdc3c47e715918173c8e760a2721aea.jpg" height="50" width="50" />
+                            <img src="{{event.image}}" height="50" width="50" />
                         </div>
                         <div class="col-md-9" align="left">
                             <div ng-if="event.action=='CREATE'">
@@ -34,11 +34,11 @@
                 </md-card-content>
             </div>
             <div ng-if="event.dataType=='USER'">
-                <div ng-if="event.action=='CREATE'">
+                <div ng-if="event.action=='CREATE'" ng-click="userCreatedEvent(event.data)">
                     <md-card-content>
                         <div class="row">
                             <div class="col-md-1" align="left">
-                                <img src="https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" height="50" width="50" />
+                                <img src="{{event.image}}" height="50" width="50" />
                             </div>
                             <div class="col-md-9" align="left">
                                 <p class="md-subhead">User <b>{{event.data.firstName}} {{event.data.lastName}}</b> just joined BeerJournal. Welcome!</p>
