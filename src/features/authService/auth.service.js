@@ -70,12 +70,8 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
                     "lastName": response.last_name,
                     "password": "string"
                 };
-                $http.post('/api/users', fbUser)
-                    .then(function(res) {
-                        login(fbUser.email,fbUser.password);
-                    },function(res) {
-                        login(fbUser.email,fbUser.password);
-                    });
+
+                login(fbUser.email,fbUser.password);
 
             },
             function(err) {
