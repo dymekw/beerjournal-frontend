@@ -13,6 +13,7 @@
     <br/>
     <br/>
     <div class="jumbotron">
+        <h2>Add new item</h2>
         <form name="form" ng-submit="vm.addNewItem()" role="form">
             <wizard id='wizard' on-finish="finishedWizard()" indicators-position="top">
                 <wz-step wz-title="Basic informations">
@@ -152,5 +153,9 @@
                 </wz-step>
             </wizard>
         </form>
+        <div class="md-padding" ng-show="imageFileAdded">
+            <img id="addedImage" ng-src="" height="200">
+            <button class="btn btn-warning" ng-click="removeImage()">Delete</button>
+        </div>
     </div>
 </md-content>

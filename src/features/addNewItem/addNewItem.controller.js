@@ -146,7 +146,7 @@ export default function AddNewItemController($scope,$rootScope, $http, $location
 
 
     $scope.previewFile = function() {
-        var preview = document.querySelector('img');
+        var preview = document.getElementById('addedImage');
         var file    = document.querySelector('input[type=file]').files[0];
         var reader  = new FileReader();
         document.getElementById("fname").value ; //string file url

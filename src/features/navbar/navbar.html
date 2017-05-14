@@ -49,8 +49,9 @@
 
         <md-menu md-position-mode="target-right target"
                  ng-show="vm.isLoggedIn()">
-            <md-button class="md-icon-button" aria-label="Account" ng-click="$mdMenu.open()">
-                <i class="material-icons">account_circle</i>
+
+            <md-button class="md-icon my-icon-button" aria-label="Account" ng-click="$mdMenu.open()">
+                <img src="{{avatar}}" alt="Account" width="50" height="50">
             </md-button>
 
             <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
