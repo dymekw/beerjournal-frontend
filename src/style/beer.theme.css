@@ -66,3 +66,11 @@ md-content .jumbotron {
     border:none;
 }
 
+.pagination>.active>a {
+    background-color: rgb(237,152,0);
+    border-color: rgb(186,119,0);
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #333;
+}
