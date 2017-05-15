@@ -13,14 +13,15 @@ export default function AccountSettingsController(authService, $scope, $rootScop
 
     $scope.updateUser = function () {
         $scope.userData = {
+            "avatarFileId" : null,
             "email": $scope.userData.email,
-
+            "id" : $rootScope.globals.currentUser.id,
             "password": $scope.userData.password,
             "lastName": $scope.userData.lastName,
             "firstName": $scope.userData.firstName
         };
 
-        $http.put('/api/users/' + $rootScope.globals.currentUser.id, this.userData).then(function (res) {
+        $http.put('/api/account/', this.userData).then(function (res) {
             if ($scope.imageFile != null) {
                 $scope.form = [];
                 $http({

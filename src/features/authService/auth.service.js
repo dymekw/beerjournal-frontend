@@ -20,6 +20,7 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $location.path('/collections');
+            location.reload();
         }, function (res) {
             toastr.error('Login failed ', 'Error');
         });
