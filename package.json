@@ -25,9 +25,7 @@
     "angular-toastr": "^2.1.1",
     "angular-ui-bootstrap": "^2.5.0",
     "moment": "^2.18.1",
-    "ng-facebook": "^0.1.6"
-  },
-  "devDependencies": {
+    "ng-facebook": "^0.1.6",
     "angular-base64": "^2.0.5",
     "angular-file-upload": "^2.5.0",
     "angular-material": "^1.1.3",
