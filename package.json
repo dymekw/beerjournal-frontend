@@ -4,6 +4,7 @@
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
     "start": "npm run server"
   },
   "repository": {
