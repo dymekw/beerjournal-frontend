@@ -15,9 +15,23 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
     function userItems () {
         $http.get('/api/users/' + user.id + "/collection/items")
             .then(function (response) {
-                $scope.userItems = response.data;
+                $scope.userItems = response.data.content;
             }, function (error) {
                 console.log(error);
+            });
+        $http.get('/api/users/' + user.id)
+            .then(function (response) {
+                console.log(response.data);
+                $scope.user_firstName = response.data.firstName;
+                $scope.user_lastName = response.data.lastName;
+            }, function (error) {
+                console.log(error);
+            });
+        $http.get('api/users/'+user.id+'/avatar')
+            .then(function (response) {
+                $scope.avatar = 'api/users/'+user.id+'/avatar';
+            }, function (error) {
+                $scope.avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxeed1zuKopBf5p58ffZNLCz2DMwbmA_xj9fD2W-EzZ4xcsVN6oFhAAw';
             });
     }
 
