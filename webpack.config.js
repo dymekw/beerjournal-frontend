@@ -15,8 +15,7 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.output = {
-        path: __dirname + 'dist',
-        publicPath: 'http://localhost:8080'
+        path: __dirname + 'dist'
     };
 
     config.devtool = 'eval-source-map';
