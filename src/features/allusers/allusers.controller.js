@@ -53,7 +53,7 @@ export default function AllUsersController($rootScope, $scope, $http,$uibModal,L
                     var userItem = {};
                     userItem.id = id;
                     userItem.images = [];
-                    response.data.forEach(function (item) {
+                    response.data.content.forEach(function (item) {
                       $http.get('/api/items/'+item.itemId)
                             .then(function (res) {
                                 res.data.imageIds.forEach(function (imageId) {

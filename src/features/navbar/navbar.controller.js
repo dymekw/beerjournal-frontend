@@ -12,6 +12,11 @@ export default function NavbarController($scope, $rootScope, $http, authService)
         return authService.getCurrentUserName();
     }
 
+
+    $scope.loginFb = function () {
+        authService.loginFb()
+    }
+
     $scope.turnOffCamera = function() {
         $rootScope.localstream.getTracks()[0].stop();
         $rootScope.localstream = undefined;

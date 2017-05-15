@@ -15,7 +15,7 @@ export default function CollectionsController($rootScope, $scope, $http, $locati
     function userItems () {
         $http.get('/api/users/' + user.id + "/collection/items")
             .then(function (response) {
-                $scope.userItems = response.data;
+                $scope.userItems = response.data.content;
             }, function (error) {
                 console.log(error);
             });
