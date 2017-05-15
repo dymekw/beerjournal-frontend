@@ -1,27 +1,25 @@
-export default function AccountSettingsController(authService, $scope, $rootScope, $stateParams, $http, $location) {
+export default function AccountSettingsController(authService,$sessionStorage, $scope, $rootScope, $stateParams, $http, $location) {
     let accountSettings = this;
     $scope.userData = {};
-    $scope.userData1 = {};
     $scope.errorMessage;
 
     $http.get('/api/users/' + $rootScope.globals.currentUser.id).then(function (response) {
-        $scope.userData = response.data;
-    });
-    $http.get('/api/users/' + $rootScope.globals.currentUser.id).then(function (response) {
-        $scope.userData1 = response.data;
+        $scope.userData.firstName = response.data.firstName;
+        $scope.userData.lastName = response.data.lastName;
+        $scope.userData.email = "";
+        $scope.userData.password = "";
+        if($sessionStorage.getObject('user').pass) {
+            $scope.userData.password =  $sessionStorage.getObject('user').pass;
+        }
     });
 
     $scope.updateUser = function () {
-        $scope.userData = {
-            "avatarFileId" : null,
-            "email": $scope.userData.email,
-            "id" : $rootScope.globals.currentUser.id,
+        var userData = {
             "password": $scope.userData.password,
             "lastName": $scope.userData.lastName,
             "firstName": $scope.userData.firstName
         };
-
-        $http.put('/api/account/', this.userData).then(function (res) {
+        $http.put('/api/account/', userData).then(function (res) {
             if ($scope.imageFile != null) {
                 $scope.form = [];
                 $http({

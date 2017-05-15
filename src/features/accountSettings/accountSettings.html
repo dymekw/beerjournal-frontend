@@ -19,11 +19,9 @@
                    required/>
             <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+        <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" class="form-control" ng-model="userData.email" required/>
-            <span ng-show="form.email.$dirty && form.email.$error.required"
-                  class="help-block">Last name is required</span>
+            <input type="text" name="email" id="email" class="form-control" ng-model="userData.email"/>
         </div>
 
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">

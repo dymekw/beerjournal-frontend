@@ -1,6 +1,6 @@
 export default function ($rootScope, $http, $location, $sessionStorage, $base64, toastr,$facebook) {
     let authService = this;
-
+    var fbAuth = false;
     this.login = function (username, password) {
         let user = {};
         user.username = username;
@@ -15,9 +15,12 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
         }).then(function (res) {
             user.id = res.data;
             const authdata = $base64.encode(user.username + ':' + user.password);
-            $sessionStorage.putObject('user', {username: user.username, id: user.id, auth: authdata});
+            if(fbAuth == true){
+                $sessionStorage.putObject('user', {username: user.username, id: user.id, auth: authdata,pass : password});
+            }else {
+                $sessionStorage.putObject('user', {username: user.username, id: user.id, auth: authdata});
+            }
             $rootScope.globals.currentUser = user;
-
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $location.path('/collections');
             location.reload();
@@ -72,6 +75,7 @@ export default function ($rootScope, $http, $location, $sessionStorage, $base64,
                     "lastName": response.last_name,
                     "password": "string"
                 };
+                fbAuth = true;
                 $http.post('/api/users', fbUser)
                     .then(function(res) {
                         authService.login(fbUser.email,fbUser.password);
