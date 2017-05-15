@@ -12,7 +12,7 @@ export default function EventsController($rootScope, $scope, $http, $location, $
     function events () {
         $http.get("/api/events")
             .then(function (response) {
-                var events = response.data;
+                var events = response.data.content;
                 $scope.events = [];
                 events.forEach(function (event) {
                     event.date = moment(event.date).fromNow();
